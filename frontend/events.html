@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GfG Campus Club - Events</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { gfg: { DEFAULT: '#2F8D46', light: '#4ade80', dark: '#166534' }, dark: { DEFAULT: '#0f172a', card: '#1e293b' } },
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex-shrink-0 flex items-center gap-3 cursor-pointer">
+                    <img src="https://media.geeksforgeeks.org/gfg-gg-logo.svg" alt="GfG Logo" class="w-10 h-10 rounded">
+                    <span class="font-bold text-xl tracking-tight">GeeksforGeeks <span class="text-gfg">RIT</span></span>
+                </a>
+                <div class="hidden lg:flex items-center flex-1 justify-evenly ml-8 lg:ml-12 pr-4">
+                    <a href="index.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Home</a>
+                    <a href="about.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">About</a>
+                    <a href="events.html" class="text-gfg-light font-bold text-sm">Events</a>
+                    <a href="resources.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Resources</a>
+                    <a href="leaderboard.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Leaderboard</a>
+                    <a href="roadmap.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm flex items-center gap-2"><i class="fa-solid fa-robot"></i> Roadmap</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Contact</a>
+                    <button class="bg-gfg hover:bg-gfg-dark text-white px-6 py-2.5 rounded-full font-semibold transition-all shadow-lg shadow-gfg/30 text-sm">Join Community</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-32 pb-24 px-4 max-w-7xl mx-auto w-full">
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Campus <span class="text-gfg">Events</span></h1>
+            <div class="h-1 w-20 bg-gfg mx-auto rounded mb-6"></div>
+            <p class="text-gray-400 max-w-2xl mx-auto text-lg">Join us offline and online to level up your skills, compete with peers, and network with industry experts.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <!-- Event Listings Container -->
+            <div class="lg:col-span-2 space-y-8" id="events-container">
+                <!-- Static Fallback Mock Event Data (Will be dynamically populated by JS fetch) -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-start hover:border-gfg transition-colors">
+                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Hackathon" class="w-full md:w-48 h-32 object-cover rounded-xl shadow-lg">
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-2xl font-bold text-white">Hackathon 2026</h3>
+                            <span class="bg-gfg/20 text-gfg-light px-3 py-1 rounded text-sm font-bold">Oct 25, 2026</span>
+                        </div>
+                        <p class="text-gray-400 mb-4 line-clamp-2">Our flagship 24-hour campus coding challenge. Build innovative solutions, compete for prizes, and get noticed by recruiters.</p>
+                        <button class="text-sm border border-gfg text-gfg hover:bg-gfg hover:text-white px-4 py-2 rounded-lg transition-colors font-bold" onclick="document.getElementById('reg-event-id').value='64f1bc27...'">Select Event</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Registration Form Module -->
+            <div class="lg:col-span-1">
+                <div class="glass-card p-6 rounded-2xl sticky top-32 border-t-4 border-t-gfg-light shadow-[0_0_30px_rgba(47,141,70,0.1)]">
+                    <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2"><i class="fa-solid fa-ticket text-gfg-light"></i> Event Registration</h3>
+                    
+                    <form id="registration-form" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Full Name</label>
+                            <input type="text" id="reg-name" required class="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-gfg focus:ring-1 focus:ring-gfg placeholder-gray-600">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">College Email</label>
+                            <input type="email" id="reg-email" required class="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-gfg focus:ring-1 focus:ring-gfg placeholder-gray-600">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Branch / Dept</label>
+                            <input type="text" id="reg-dept" required class="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-gfg focus:ring-1 focus:ring-gfg placeholder-gray-600" placeholder="e.g. Computer Science">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Event Selection</label>
+                            <!-- This value will be populated via the event listings dynamically -->
+                            <input type="text" id="reg-event-id" required class="w-full bg-dark border border-gray-700 rounded-lg px-4 py-2.5 text-gfg-light font-bold" value="" readonly placeholder="Click 'Select Event' from the list">
+                        </div>
+                        <button type="submit" class="w-full bg-gfg hover:bg-gfg-light text-white font-bold py-3 rounded-lg shadow-lg shadow-gfg/20 transition-all mt-4">
+                            Complete Registration
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

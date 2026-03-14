@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeeksforGeeks RIT Campus Club - Home</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gfg: { DEFAULT: '#2F8D46', light: '#4ade80', dark: '#166534' },
+                        dark: { DEFAULT: '#0f172a', card: '#1e293b', lighter: '#334155' }
+                    },
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex-shrink-0 flex items-center gap-3 cursor-pointer">
+                    <img src="https://media.geeksforgeeks.org/gfg-gg-logo.svg" alt="GfG Logo" class="w-10 h-10 rounded">
+                    <span class="font-bold text-xl tracking-tight">GeeksforGeeks <span class="text-gfg">RIT</span></span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center flex-1 justify-evenly ml-8 lg:ml-12 pr-4">
+                    <a href="index.html" class="text-gfg-light font-bold text-sm">Home</a>
+                    <a href="about.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">About</a>
+                    <a href="events.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Events</a>
+                    <a href="resources.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Resources</a>
+                    <a href="leaderboard.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Leaderboard</a>
+                    <a href="roadmap.html" class="text-gray-300 hover:text-gfg-light hover:drop-shadow-[0_0_8px_rgba(74,222,128,0.5)] transition-all hover:scale-105 font-medium text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-robot"></i> Roadmap⭐
+                    </a>
+                    <a href="contact.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Contact</a>
+                    
+                    <button class="bg-gfg hover:bg-gfg-dark text-white px-6 py-2.5 rounded-full font-semibold transition-all shadow-lg shadow-gfg/30 hover:shadow-gfg/50 text-sm">
+                        Join Community
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="md:hidden hidden bg-dark-card border-b border-gray-800">
+            <div class="px-2 pt-2 pb-5 space-y-1 sm:px-3 flex flex-col items-center">
+                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-bold text-gfg-light">Home</a>
+                <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white">About</a>
+                <a href="events.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white">Events</a>
+                <a href="resources.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white">Resources</a>
+                <a href="leaderboard.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white">Leaderboard</a>
+                <a href="roadmap.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white"><i class="fa-solid fa-robot mr-2"></i>Roadmap⭐</a>
+                <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white">Contact</a>
+                <button class="mt-4 w-11/12 bg-gfg hover:bg-gfg-dark text-white px-6 py-3 rounded-xl font-bold transition-colors">
+                    Join Community
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow pt-20">
+        
+        <!-- 1. HOME SECTION -->
+        <section class="min-h-[90vh] flex flex-col justify-center items-center px-4 relative">
+            <!-- Hero Content -->
+            <div class="text-center max-w-4xl mx-auto mt-16 z-10">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-gfg-light font-medium text-sm mb-8 animate-bounce">
+                    <i class="fa-solid fa-code"></i> Official Campus Chapter
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
+                    GeeksforGeeks <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-gfg-light to-gfg">Campus Club</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-400 mb-10 font-light italic">
+                    "Learn • Build • Compete"
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="events.html" class="bg-gfg hover:bg-gfg-light hover:-translate-y-1 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-[0_0_20px_rgba(47,141,70,0.4)] flex items-center justify-center gap-3">
+                        Explore Events <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="resources.html" class="glass-card hover:bg-white/10 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-laptop-code"></i> Start Learning
+                    </a>
+                </div>
+            </div>
+
+            <!-- Statistics Banner -->
+            <div class="w-full max-w-5xl mx-auto mt-24 grid grid-cols-1 md:grid-cols-3 gap-6 px-4 z-10 pb-16">
+                <div class="glass-card p-6 rounded-2xl text-center border-t-4 border-t-gfg">
+                    <div class="text-4xl font-extrabold text-white mb-2">120<span class="text-gfg">+</span></div>
+                    <div class="text-gray-400 font-medium uppercase tracking-wider text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-users text-gfg-light"></i> Active Students
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center border-t-4 border-t-gfg px-4">
+                    <div class="text-4xl font-extrabold text-white mb-2">20<span class="text-gfg">+</span></div>
+                    <div class="text-gray-400 font-medium uppercase tracking-wider text-sm flex items-center justify-center gap-2">
+                        <i class="fa-regular fa-calendar-check text-gfg-light"></i> Successful Events
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center border-t-4 border-t-gfg">
+                    <div class="text-4xl font-extrabold text-white mb-2">2000<span class="text-gfg">+</span></div>
+                    <div class="text-gray-400 font-medium uppercase tracking-wider text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-code-commit text-gfg-light"></i> Problems Solved
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Previews Grid -->
+            <div class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 px-4 pb-24">
+                
+                <!-- Upcoming Events Preview -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="flex items-center justify-between border-b border-gray-800 pb-4">
+                        <h2 class="text-2xl font-bold flex items-center gap-3"><i class="fa-solid fa-fire text-gfg-light"></i> Upcoming Events</h2>
+                        <a href="events.html" class="text-sm text-gfg hover:text-gfg-light font-medium">View Calendar <i class="fa-solid fa-angle-right"></i></a>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="glass-card p-5 rounded-xl flex items-start gap-4">
+                            <div class="bg-gfg/20 text-gfg-light p-3 rounded-lg text-center min-w-[60px]">
+                                <span class="block text-xs uppercase font-bold">Oct</span>
+                                <span class="block text-xl font-extrabold">10</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">DSA Workshop</h3>
+                                <p class="text-gray-400 text-sm mb-3"><i class="fa-regular fa-clock"></i> 4:00 PM - RIT Lab</p>
+                                <span class="text-xs font-bold bg-blue-500/20 text-blue-400 px-2 py-1 rounded">Workshop</span>
+                            </div>
+                        </div>
+                        <div class="glass-card p-5 rounded-xl flex items-start gap-4">
+                            <div class="bg-gfg/20 text-gfg-light p-3 rounded-lg text-center min-w-[60px]">
+                                <span class="block text-xs uppercase font-bold">Oct</span>
+                                <span class="block text-xl font-extrabold">15</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">Hackathon Prep</h3>
+                                <p class="text-gray-400 text-sm mb-3"><i class="fa-regular fa-clock"></i> 2:00 PM - Online</p>
+                                <span class="text-xs font-bold bg-purple-500/20 text-purple-400 px-2 py-1 rounded border-b">Hackathon</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leaderboard & POTD Preview -->
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between border-b border-gray-800 pb-4">
+                        <h2 class="text-2xl font-bold flex items-center gap-3"><i class="fa-solid fa-trophy text-yellow-500"></i> Top Weekly</h2>
+                        <a href="leaderboard.html" class="text-sm text-gfg hover:text-gfg-light font-medium">Full List <i class="fa-solid fa-angle-right"></i></a>
+                    </div>
+                    
+                    <div class="glass-card p-0 rounded-xl overflow-hidden">
+                        <div class="p-4 border-b border-gray-800 flex justify-between items-center bg-white/5">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-500 font-bold border border-yellow-500/50">1</div>
+                                <span class="font-semibold">Rahul</span>
+                            </div>
+                            <span class="text-gfg-light font-bold">120 pts</span>
+                        </div>
+                        <div class="p-4 border-b border-gray-800 flex justify-between items-center">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-gray-400/20 flex items-center justify-center text-gray-300 font-bold border border-gray-400/50">2</div>
+                                <span class="font-semibold text-gray-300">Priya</span>
+                            </div>
+                            <span class="text-gfg font-bold">110 pts</span>
+                        </div>
+                        <div class="p-4 flex justify-between items-center text-gray-400">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-orange-700/20 flex items-center justify-center text-orange-400 font-bold border border-orange-700/50">3</div>
+                                <span class="font-semibold">Arjun</span>
+                            </div>
+                            <span class="font-bold">95 pts</span>
+                        </div>
+                    </div>
+
+                    <!-- Problem of the Day -->
+                    <div class="glass-card p-5 rounded-xl border-l-4 border-l-gfg-light bg-gradient-to-r from-gfg/10 to-transparent">
+                        <h3 class="text-sm uppercase tracking-wider text-gfg-light font-bold mb-2 flex items-center gap-2"><i class="fa-solid fa-bolt"></i> Problem of the Day</h3>
+                        <p class="font-semibold text-white mb-3 text-lg">Reverse a Linked List in Groups of Given Size</p>
+                        <button class="text-sm bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg transition-colors font-medium w-full text-center">Solve Challenge</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-8 bg-black/50 text-center">
+        <div class="flex items-center justify-center gap-3 mb-4">
+            <img src="https://media.geeksforgeeks.org/gfg-gg-logo.svg" alt="GfG Logo" class="w-8 h-8 rounded opacity-80 select-none">
+            <span class="font-bold text-gray-400 tracking-tight">GeeksforGeeks <span class="text-gfg">RIT</span></span>
+        </div>
+        <p class="text-gray-500 text-sm">© 2026 GeeksforGeeks RIT Campus Club. All rights reserved.</p>
+        <div class="mt-4 space-x-4 text-xs font-medium text-gray-600">
+            <a href="#" class="hover:text-gfg transition-colors">Privacy Policy</a>
+            <a href="#" class="hover:text-gfg transition-colors">Terms of Service</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

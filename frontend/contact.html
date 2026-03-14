@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GfG Campus Club - Contact</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { gfg: { DEFAULT: '#2F8D46', light: '#4ade80' }, dark: { DEFAULT: '#0f172a', card: '#1e293b' } }, fontFamily: { sans: ['Outfit', 'sans-serif'] } } }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex-shrink-0 flex items-center gap-3 cursor-pointer">
+                    <img src="https://media.geeksforgeeks.org/gfg-gg-logo.svg" alt="GfG Logo" class="w-10 h-10 rounded">
+                    <span class="font-bold text-xl tracking-tight">GeeksforGeeks <span class="text-gfg">RIT</span></span>
+                </a>
+                <div class="hidden lg:flex items-center flex-1 justify-evenly ml-8 lg:ml-12 pr-4">
+                    <a href="index.html" class="text-gray-300 hover:text-white transition-colors font-medium text-sm">Home</a>
+                    <a href="about.html" class="text-gray-300 hover:text-white transition-colors font-medium text-sm">About</a>
+                    <a href="events.html" class="text-gray-300 hover:text-white transition-colors font-medium text-sm">Events</a>
+                    <a href="resources.html" class="text-gray-300 hover:text-white transition-colors font-medium text-sm">Resources</a>
+                    <a href="leaderboard.html" class="text-gray-300 hover:text-white transition-colors font-medium text-sm">Leaderboard</a>
+                    <a href="roadmap.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm flex items-center gap-2"><i class="fa-solid fa-robot"></i> Roadmap</a>
+                    <a href="contact.html" class="text-gfg-light font-bold text-sm">Contact</a>
+                    <button class="bg-gfg text-white px-6 py-2.5 rounded-full font-semibold shadow-lg shadow-gfg/30 text-sm">Join</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-32 pb-24 px-4 max-w-7xl mx-auto w-full">
+        <div class="text-center mb-16">
+            <h1 class="text-4xl font-bold mb-4">Get in <span class="text-gfg">Touch</span></h1>
+            <div class="h-1 w-20 bg-gfg mx-auto rounded mb-6"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 mb-24">
+            <!-- Contact Info -->
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Connect With Us</h3>
+                    <p class="text-gray-400 text-lg">Have questions about the club, upcoming events, or need guidance? Reach out, we're here to help.</p>
+                </div>
+                
+                <div class="space-y-4">
+                    <a href="mailto:contact@gfgrit.edu" class="flex items-center gap-4 text-gray-300 hover:text-white group">
+                        <div class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-gfg group-hover:bg-gfg group-hover:text-white transition-all"><i class="fa-solid fa-envelope text-xl"></i></div>
+                        <span class="text-lg">contact@gfgrit.edu</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-4 text-gray-300 hover:text-white group">
+                        <div class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-[#5865F2] group-hover:bg-[#5865F2] group-hover:text-white transition-all"><i class="fa-brands fa-discord text-xl"></i></div>
+                        <span class="text-lg">Join our Discord Server</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-4 text-gray-300 hover:text-white group">
+                        <div class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-[#0077b5] group-hover:bg-[#0077b5] group-hover:text-white transition-all"><i class="fa-brands fa-linkedin text-xl"></i></div>
+                        <span class="text-lg">GeeksforGeeks RIT Chapter</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="glass-card p-8 rounded-2xl">
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">First Name</label>
+                            <input type="text" id="contact-fname" required class="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gfg focus:ring-1 focus:ring-gfg placeholder-gray-600">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Last Name</label>
+                            <input type="text" id="contact-lname" required class="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gfg focus:ring-1 focus:ring-gfg placeholder-gray-600">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
+                        <input type="email" id="contact-email" required class="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gfg focus:ring-1 focus:ring-gfg placeholder-gray-600">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-2">Message</label>
+                        <textarea rows="4" id="contact-msg" required class="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gfg focus:ring-1 focus:ring-gfg placeholder-gray-600 resize-none" placeholder="How can we help you?"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-gfg hover:bg-gfg-light text-white font-bold py-3 rounded-lg shadow-lg shadow-gfg/20 transition-all flex justify-center items-center gap-2">
+                        Send Message <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

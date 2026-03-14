@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GfG Campus Club - About</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { gfg: { DEFAULT: '#2F8D46', light: '#4ade80' }, dark: { DEFAULT: '#0f172a', card: '#1e293b' } }, fontFamily: { sans: ['Outfit', 'sans-serif'] } } }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased min-h-screen flex flex-col pt-32 pb-24 px-4 bg-black/20">
+
+    <nav class="fixed top-0 w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex-shrink-0 flex items-center gap-3 cursor-pointer">
+                    <img src="https://media.geeksforgeeks.org/gfg-gg-logo.svg" alt="GfG Logo" class="w-10 h-10 rounded">
+                    <span class="font-bold text-xl tracking-tight">GeeksforGeeks <span class="text-gfg">RIT</span></span>
+                </a>
+                <div class="hidden lg:flex items-center flex-1 justify-evenly ml-8 lg:ml-12 pr-4">
+                    <a href="index.html" class="text-gray-300 hover:text-white transition-colors font-medium text-sm">Home</a>
+                    <a href="about.html" class="text-gfg-light font-bold text-sm">About</a>
+                    <a href="events.html" class="text-gray-300 hover:text-white transition-colors font-medium text-sm">Events</a>
+                    <a href="resources.html" class="text-gray-300 hover:text-white transition-colors font-medium text-sm">Resources</a>
+                    <a href="leaderboard.html" class="text-gray-300 hover:text-white transition-colors font-medium text-sm">Leaderboard</a>
+                    <a href="roadmap.html" class="text-gray-300 hover:text-white transition-colors font-medium text-sm flex items-center gap-2"><i class="fa-solid fa-robot"></i> Roadmap</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-white transition-colors font-medium text-sm">Contact</a>
+                    <button class="bg-gfg text-white px-6 py-2.5 rounded-full font-semibold shadow-lg shadow-gfg/30 text-sm">Join</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">About <span class="text-gfg">GfG Campus Club</span></h1>
+            <div class="h-1 w-20 bg-gfg mx-auto rounded"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24">
+            <div class="space-y-6">
+                <h3 class="text-3xl font-bold">Our Mission</h3>
+                <p class="text-gray-300 leading-relaxed text-lg">
+                    The GeeksforGeeks RIT Campus Club is a vibrant community of passionate learners and developers. Our mission is to bridge the gap between academic learning and industry demands by fostering a culture of continuous learning, coding proficiency, and technological innovation.
+                </p>
+                <div class="grid grid-cols-2 gap-6 mt-8">
+                    <div class="glass-card p-4 rounded-xl border-l-4 border-l-gfg">
+                        <h4 class="font-bold text-white text-xl mb-1">50+</h4>
+                        <p class="text-gray-400 text-sm uppercase tracking-wide">Workshops</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl border-l-4 border-l-gfg">
+                        <h4 class="font-bold text-white text-xl mb-1">Top 10</h4>
+                        <p class="text-gray-400 text-sm uppercase tracking-wide">National Rank</p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="absolute inset-0 bg-gfg/20 blur-[100px] rounded-full"></div>
+                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Students coding together" class="rounded-2xl relative z-10 border border-white/10 shadow-2xl">
+            </div>
+        </div>
+
+        <!-- Team Members -->
+        <div class="text-center mb-12">
+            <h3 class="text-3xl font-bold mb-2">Meet The Core Team</h3>
+            <p class="text-gray-400">The passionate geeks behind the club operations</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="glass-card p-6 rounded-2xl text-center group">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix&backgroundColor=2f8d46" alt="Alex" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-dark group-hover:border-gfg transition-colors">
+                <h4 class="font-bold text-xl mb-1 text-white">Alex Developer</h4>
+                <p class="text-gfg-light font-medium text-sm mb-4">President</p>
+                <a href="#" class="text-gray-400 hover:text-[#0077b5] transition-colors inline-block text-xl"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+            <div class="glass-card p-6 rounded-2xl text-center group">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah&backgroundColor=000000" alt="Sarah" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-dark group-hover:border-gfg transition-colors">
+                <h4 class="font-bold text-xl mb-1 text-white">Sarah Chen</h4>
+                <p class="text-gfg-light font-medium text-sm mb-4">Vice President</p>
+                <a href="#" class="text-gray-400 hover:text-[#0077b5] transition-colors inline-block text-xl"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+            <div class="glass-card p-6 rounded-2xl text-center group">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Michael&backgroundColor=0f172a" alt="Michael" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-dark group-hover:border-gfg transition-colors">
+                <h4 class="font-bold text-xl mb-1 text-white">Michael Doe</h4>
+                <p class="text-gfg-light font-medium text-sm mb-4">Tech Lead</p>
+                <a href="#" class="text-gray-400 hover:text-[#0077b5] transition-colors inline-block text-xl"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+            <div class="glass-card p-6 rounded-2xl text-center group">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Emma&backgroundColor=10b981" alt="Emma" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-dark group-hover:border-gfg transition-colors">
+                <h4 class="font-bold text-xl mb-1 text-white">Emma Davis</h4>
+                <p class="text-gfg-light font-medium text-sm mb-4">Event Manager</p>
+                <a href="#" class="text-gray-400 hover:text-[#0077b5] transition-colors inline-block text-xl"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
