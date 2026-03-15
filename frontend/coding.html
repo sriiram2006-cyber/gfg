@@ -35,22 +35,26 @@
 <body class="h-full flex flex-col bg-[#fdfdfd] overflow-hidden">
 
     <!-- Top Bar -->
-    <nav class="h-16 border-b border-gray-200 bg-white px-6 flex items-center justify-between z-50">
+    <nav class="h-16 glass-nav px-6 flex items-center justify-between z-50">
         <div class="flex items-center gap-6">
-            <a href="challenges.html" class="text-gray-500 hover:text-gfg transition-colors flex items-center gap-2 font-medium">
+            <a href="index.html" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 font-medium">
+                <i class="fa-solid fa-house"></i> Home
+            </a>
+            <div class="h-6 w-[1px] bg-white/10"></div>
+            <a href="challenges.html" class="text-gray-300 hover:text-gfg transition-colors flex items-center gap-2 font-medium">
                 <i class="fa-solid fa-chevron-left"></i> Problems
             </a>
-            <div class="h-6 w-[1px] bg-gray-200"></div>
-            <h2 id="problem-title" class="font-bold text-[#1a1a2e] text-lg"><i class="fa-solid fa-spinner fa-spin text-gfg"></i> Loading...</h2>
+            <div class="h-6 w-[1px] bg-white/10"></div>
+            <h2 id="problem-title" class="font-bold text-white text-lg"><i class="fa-solid fa-spinner fa-spin text-gfg-light"></i> Loading...</h2>
         </div>
         <div class="flex items-center gap-4">
-            <select id="lang-select" class="bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-gfg/20">
+            <select id="lang-select" class="bg-[#0f172a] border border-white/10 text-gray-300 text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-gfg/20">
                 <option value="python">Python 3</option>
                 <option value="cpp">C++ (GCC 9.2.0)</option>
                 <option value="java">Java (OpenJDK 13.0.1)</option>
                 <option value="javascript">JavaScript (Node.js 12.14.0)</option>
             </select>
-            <button id="run-btn" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-1.5 px-4 rounded-lg text-sm transition-all">Run</button>
+            <button id="run-btn" class="bg-white/5 hover:bg-white/10 text-gray-300 font-bold py-1.5 px-4 rounded-lg text-sm transition-all border border-white/5">Run</button>
             <button id="submit-btn" class="bg-gfg hover:bg-gfg-dark text-white font-bold py-1.5 px-6 rounded-lg text-sm shadow-md shadow-gfg/20 transition-all">Submit</button>
         </div>
     </nav>

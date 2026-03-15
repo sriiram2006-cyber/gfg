@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path');
 const connectDB = require('./config/db');
 
 // Load env vars
@@ -14,6 +15,9 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json()); // Body parser
+
+// Serve static frontend files
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 // Route files
 const events = require('./routes/events.routes');
