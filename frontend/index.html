@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeeksforGeeks RIT Campus Club - Home</title>
+    <title>GeeksforGeeks RIT Campus Club</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
@@ -15,16 +15,65 @@
             theme: {
                 extend: {
                     colors: {
-                        gfg: { DEFAULT: '#2F8D46', light: '#4ade80', dark: '#166534' },
-                        dark: { DEFAULT: '#0f172a', card: '#1e293b', lighter: '#334155' }
+                        gfg: {
+                            DEFAULT: '#2F8D46',
+                            light: '#4ade80',
+                            dark: '#166534',
+                        },
+                        dark: {
+                            DEFAULT: '#0f172a',
+                            card: '#1e293b',
+                            lighter: '#334155'
+                        }
                     },
-                    fontFamily: { sans: ['Outfit', 'sans-serif'] }
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
                 }
             }
         }
     </script>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: theme('colors.dark.DEFAULT');
+            color: #f8fafc;
+            /* Stunning gradient background blobs */
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(47, 141, 70, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(47, 141, 70, 0.1) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(15, 23, 42, 1) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+        
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(47, 141, 70, 0.3);
+            border-color: rgba(47, 141, 70, 0.3);
+        }
+
+        /* Hide scrollbar for sections */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col">
 
@@ -33,23 +82,20 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
-                <a href="index.html" class="flex-shrink-0 flex items-center gap-3 cursor-pointer">
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="scrollToSection('home')">
                     <img src="https://media.geeksforgeeks.org/gfg-gg-logo.svg" alt="GfG Logo" class="w-10 h-10 rounded">
                     <span class="font-bold text-xl tracking-tight">GeeksforGeeks <span class="text-gfg">RIT</span></span>
-                </a>
+                </div>
 
                 <!-- Desktop Menu -->
-                <div class="hidden lg:flex items-center flex-1 justify-evenly ml-8 lg:ml-12 pr-4">
-                    <a href="index.html" class="text-gfg-light font-bold text-sm">Home</a>
-                    <a href="about.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">About</a>
-                    <a href="events.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Events</a>
-                    <a href="resources.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Resources</a>
-                    <a href="leaderboard.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Leaderboard</a>
-                    <a href="challenges.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Challenges</a>
-                    <a href="roadmap.html" class="text-gray-300 hover:text-gfg-light hover:drop-shadow-[0_0_8px_rgba(74,222,128,0.5)] transition-all hover:scale-105 font-medium text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-robot"></i> Roadmap⭐
-                    </a>
-                    <a href="contact.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Contact</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">About</a>
+                    <a href="#events" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Events</a>
+                    <a href="#resources" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Resources</a>
+                    <a href="#leaderboard" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Leaderboard</a>
+                    <a href="#ai-roadmap" class="text-gfg-light drop-shadow-[0_0_8px_rgba(74,222,128,0.5)] font-semibold transition-all hover:scale-105 text-sm flex items-center gap-2"><i class="fa-solid fa-robot"></i> AI Roadmap</a>
+                    <a href="#contact" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Contact</a>
                     
                     <button class="bg-gfg hover:bg-gfg-dark text-white px-6 py-2.5 rounded-full font-semibold transition-all shadow-lg shadow-gfg/30 hover:shadow-gfg/50 text-sm">
                         Join Community
@@ -66,16 +112,16 @@
         </div>
 
         <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="md:hidden hidden bg-dark-card border-b border-gray-800">
+        <div id="mobile-menu" class="md:hidden hidden bg-[#0f172a] border-b border-white/5">
             <div class="px-2 pt-2 pb-5 space-y-1 sm:px-3 flex flex-col items-center">
-                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-bold text-gfg-light">Home</a>
-                <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white">About</a>
-                <a href="events.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white">Events</a>
-                <a href="resources.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white">Resources</a>
-                <a href="leaderboard.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white">Leaderboard</a>
-                <a href="roadmap.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white"><i class="fa-solid fa-robot mr-2"></i>Roadmap⭐</a>
-                <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white">Contact</a>
-                <button class="mt-4 w-11/12 bg-gfg hover:bg-gfg-dark text-white px-6 py-3 rounded-xl font-bold transition-colors">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/5 hover:text-gfg-light">Home</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">About</a>
+                <a href="#events" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Events</a>
+                <a href="#resources" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Resources</a>
+                <a href="#leaderboard" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Leaderboard</a>
+                <a href="#ai-roadmap" class="block px-3 py-2 rounded-md text-base font-bold text-gfg-light hover:bg-white/5"><i class="fa-solid fa-robot mr-2"></i>AI Roadmap</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Contact</a>
+                <button class="mt-4 w-11/12 bg-gfg hover:bg-gfg-dark text-white px-6 py-3 rounded-xl font-bold transition-colors shadow-lg shadow-gfg/20">
                     Join Community
                 </button>
             </div>
@@ -86,24 +132,24 @@
     <main class="flex-grow pt-20">
         
         <!-- 1. HOME SECTION -->
-        <section class="min-h-[90vh] flex flex-col justify-center items-center px-4 relative">
+        <section id="home" class="min-h-[90vh] flex flex-col justify-center items-center px-4 relative">
             <!-- Hero Content -->
             <div class="text-center max-w-4xl mx-auto mt-16 z-10">
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-gfg-light font-medium text-sm mb-8 animate-bounce">
                     <i class="fa-solid fa-code"></i> Official Campus Chapter
                 </div>
                 <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
-                    <span class="text-[#1a1a2e]" style="text-shadow: 0 2px 10px rgba(0,0,0,0.15);">GeeksforGeeks</span> <br>
+                    GeeksforGeeks <br>
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-gfg-light to-gfg">Campus Club</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-gray-600 mb-10 font-light italic">
+                <p class="text-xl md:text-2xl text-gray-400 mb-10 font-light italic">
                     "Learn • Build • Compete"
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="events.html" class="bg-gfg hover:bg-gfg-light hover:-translate-y-1 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-[0_0_20px_rgba(47,141,70,0.4)] flex items-center justify-center gap-3">
+                    <a href="#events" class="bg-gfg hover:bg-gfg-light hover:-translate-y-1 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-[0_0_20px_rgba(47,141,70,0.4)] flex items-center justify-center gap-3">
                         Explore Events <i class="fa-solid fa-arrow-right"></i>
                     </a>
-                    <a href="resources.html" class="bg-gray-500/80 hover:bg-gray-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-3">
+                    <a href="#resources" class="glass-card hover:bg-white/10 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-3">
                         <i class="fa-solid fa-laptop-code"></i> Start Learning
                     </a>
                 </div>
@@ -112,21 +158,21 @@
             <!-- Statistics Banner -->
             <div class="w-full max-w-5xl mx-auto mt-24 grid grid-cols-1 md:grid-cols-3 gap-6 px-4 z-10 pb-16">
                 <div class="glass-card p-6 rounded-2xl text-center border-t-4 border-t-gfg">
-                    <div class="text-4xl font-extrabold text-[#1a1a2e] mb-2">120<span class="text-gfg">+</span></div>
-                    <div class="text-gray-600 font-medium uppercase tracking-wider text-sm flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-users text-gfg"></i> Active Students
+                    <div class="text-4xl font-extrabold text-white mb-2">120<span class="text-gfg">+</span></div>
+                    <div class="text-gray-400 font-medium uppercase tracking-wider text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-users text-gfg-light"></i> Active Students
                     </div>
                 </div>
                 <div class="glass-card p-6 rounded-2xl text-center border-t-4 border-t-gfg px-4">
-                    <div class="text-4xl font-extrabold text-[#1a1a2e] mb-2">20<span class="text-gfg">+</span></div>
-                    <div class="text-gray-600 font-medium uppercase tracking-wider text-sm flex items-center justify-center gap-2">
-                        <i class="fa-regular fa-calendar-check text-gfg"></i> Successful Events
+                    <div class="text-4xl font-extrabold text-white mb-2">20<span class="text-gfg">+</span></div>
+                    <div class="text-gray-400 font-medium uppercase tracking-wider text-sm flex items-center justify-center gap-2">
+                        <i class="fa-regular fa-calendar-check text-gfg-light"></i> Successful Events
                     </div>
                 </div>
                 <div class="glass-card p-6 rounded-2xl text-center border-t-4 border-t-gfg">
-                    <div class="text-4xl font-extrabold text-[#1a1a2e] mb-2">2000<span class="text-gfg">+</span></div>
-                    <div class="text-gray-600 font-medium uppercase tracking-wider text-sm flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-code-commit text-gfg"></i> Problems Solved
+                    <div class="text-4xl font-extrabold text-white mb-2">2000<span class="text-gfg">+</span></div>
+                    <div class="text-gray-400 font-medium uppercase tracking-wider text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-code-commit text-gfg-light"></i> Problems Solved
                     </div>
                 </div>
             </div>
@@ -137,8 +183,8 @@
                 <!-- Upcoming Events Preview -->
                 <div class="lg:col-span-2 space-y-6">
                     <div class="flex items-center justify-between border-b border-gray-800 pb-4">
-                        <h2 class="text-2xl font-bold text-[#1a1a2e] flex items-center gap-3"><i class="fa-solid fa-fire text-gfg"></i> Upcoming Events</h2>
-                        <a href="events.html" class="text-sm text-gfg hover:text-gfg-light font-medium">View Calendar <i class="fa-solid fa-angle-right"></i></a>
+                        <h2 class="text-2xl font-bold flex items-center gap-3"><i class="fa-solid fa-fire text-gfg-light"></i> Upcoming Events</h2>
+                        <a href="#events" class="text-sm text-gfg hover:text-gfg-light font-medium">View Calendar <i class="fa-solid fa-angle-right"></i></a>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -148,9 +194,9 @@
                                 <span class="block text-xl font-extrabold">10</span>
                             </div>
                             <div>
-                                <h3 class="font-bold text-lg text-[#1a1a2e] mb-1">DSA Workshop</h3>
-                                <p class="text-gray-600 text-sm mb-3"><i class="fa-regular fa-clock"></i> 4:00 PM - RIT Lab</p>
-                                <span class="text-xs font-bold bg-blue-500/20 text-blue-600 px-2 py-1 rounded">Workshop</span>
+                                <h3 class="font-bold text-lg mb-1">DSA Workshop</h3>
+                                <p class="text-gray-400 text-sm mb-3"><i class="fa-regular fa-clock"></i> 4:00 PM - RIT Lab</p>
+                                <span class="text-xs font-bold bg-blue-500/20 text-blue-400 px-2 py-1 rounded">Workshop</span>
                             </div>
                         </div>
                         <div class="glass-card p-5 rounded-xl flex items-start gap-4">
@@ -159,9 +205,9 @@
                                 <span class="block text-xl font-extrabold">15</span>
                             </div>
                             <div>
-                                <h3 class="font-bold text-lg text-[#1a1a2e] mb-1">Hackathon Prep</h3>
-                                <p class="text-gray-600 text-sm mb-3"><i class="fa-regular fa-clock"></i> 2:00 PM - Online</p>
-                                <span class="text-xs font-bold bg-purple-500/20 text-purple-600 px-2 py-1 rounded border-b">Hackathon</span>
+                                <h3 class="font-bold text-lg mb-1">Hackathon Prep</h3>
+                                <p class="text-gray-400 text-sm mb-3"><i class="fa-regular fa-clock"></i> 2:00 PM - Online</p>
+                                <span class="text-xs font-bold bg-purple-500/20 text-purple-400 px-2 py-1 rounded border-b">Hackathon</span>
                             </div>
                         </div>
                     </div>
@@ -170,29 +216,29 @@
                 <!-- Leaderboard & POTD Preview -->
                 <div class="space-y-6">
                     <div class="flex items-center justify-between border-b border-gray-800 pb-4">
-                        <h2 class="text-2xl font-bold text-[#1a1a2e] flex items-center gap-3"><i class="fa-solid fa-trophy text-yellow-500"></i> Top Weekly</h2>
-                        <a href="leaderboard.html" class="text-sm text-gfg hover:text-gfg-light font-medium">Full List <i class="fa-solid fa-angle-right"></i></a>
+                        <h2 class="text-2xl font-bold flex items-center gap-3"><i class="fa-solid fa-trophy text-yellow-500"></i> Top Weekly</h2>
+                        <a href="#leaderboard" class="text-sm text-gfg hover:text-gfg-light font-medium">Full List <i class="fa-solid fa-angle-right"></i></a>
                     </div>
                     
                     <div class="glass-card p-0 rounded-xl overflow-hidden">
                         <div class="p-4 border-b border-gray-800 flex justify-between items-center bg-white/5">
                             <div class="flex items-center gap-3">
                                 <div class="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-500 font-bold border border-yellow-500/50">1</div>
-                                <span class="font-semibold text-[#1a1a2e]">Rahul</span>
+                                <span class="font-semibold">Rahul</span>
                             </div>
                             <span class="text-gfg-light font-bold">120 pts</span>
                         </div>
                         <div class="p-4 border-b border-gray-800 flex justify-between items-center">
                             <div class="flex items-center gap-3">
                                 <div class="w-8 h-8 rounded-full bg-gray-400/20 flex items-center justify-center text-gray-300 font-bold border border-gray-400/50">2</div>
-                                <span class="font-semibold text-[#1a1a2e]">Priya</span>
+                                <span class="font-semibold text-gray-300">Priya</span>
                             </div>
                             <span class="text-gfg font-bold">110 pts</span>
                         </div>
                         <div class="p-4 flex justify-between items-center text-gray-400">
                             <div class="flex items-center gap-3">
                                 <div class="w-8 h-8 rounded-full bg-orange-700/20 flex items-center justify-center text-orange-400 font-bold border border-orange-700/50">3</div>
-                                <span class="font-semibold text-[#1a1a2e]">Arjun</span>
+                                <span class="font-semibold">Arjun</span>
                             </div>
                             <span class="font-bold">95 pts</span>
                         </div>
@@ -201,29 +247,635 @@
                     <!-- Problem of the Day -->
                     <div class="glass-card p-5 rounded-xl border-l-4 border-l-gfg-light bg-gradient-to-r from-gfg/10 to-transparent">
                         <h3 class="text-sm uppercase tracking-wider text-gfg-light font-bold mb-2 flex items-center gap-2"><i class="fa-solid fa-bolt"></i> Problem of the Day</h3>
-                        <p class="font-semibold text-[#1a1a2e] mb-3 text-lg">Reverse a Linked List in Groups of Given Size</p>
-                        <button class="text-sm bg-gfg/20 hover:bg-gfg/30 text-gfg-dark px-4 py-2 rounded-lg transition-colors font-bold w-full text-center">Solve Challenge</button>
+                        <p class="font-semibold text-white mb-3 text-lg">Reverse a Linked List in Groups of Given Size</p>
+                        <button class="text-sm bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg transition-colors font-medium w-full text-center">Solve Challenge</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 2. ABOUT SECTION -->
+        <section id="about" class="min-h-screen py-24 px-4 bg-black/20 border-t border-white/5">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">About <span class="text-gfg">GfG Campus Club</span></h2>
+                    <div class="h-1 w-20 bg-gfg mx-auto rounded"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24">
+                    <div class="space-y-6">
+                        <h3 class="text-3xl font-bold">Our Mission</h3>
+                        <p class="text-gray-300 leading-relaxed text-lg">
+                            The GeeksforGeeks RIT Campus Club is a vibrant community of passionate learners and developers. Our mission is to bridge the gap between academic learning and industry demands by fostering a culture of continuous learning, coding proficiency, and technological innovation.
+                        </p>
+                        <p class="text-gray-300 leading-relaxed text-lg">
+                            We aim to provide a platform where students can collaborate, compete, and grow together through workshops, hackathons, and rigorous coding challenges.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-6 mt-8">
+                            <div class="glass-card p-4 rounded-xl border-l-4 border-l-gfg">
+                                <h4 class="font-bold text-white text-xl mb-1">50+</h4>
+                                <p class="text-gray-400 text-sm uppercase tracking-wide">Workshops</p>
+                            </div>
+                            <div class="glass-card p-4 rounded-xl border-l-4 border-l-gfg">
+                                <h4 class="font-bold text-white text-xl mb-1">Top 10</h4>
+                                <p class="text-gray-400 text-sm uppercase tracking-wide">National Rank</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gfg/20 blur-[100px] rounded-full"></div>
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Students coding together" class="rounded-2xl relative z-10 border border-white/10 shadow-2xl">
+                    </div>
+                </div>
+
+                <!-- Team Members -->
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold mb-2">Meet The Core Team</h3>
+                    <p class="text-gray-400">The passionate geeks behind the club operations</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Team Member 1 -->
+                    <div class="glass-card p-6 rounded-2xl text-center group">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix&backgroundColor=2f8d46" alt="Alex" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-dark group-hover:border-gfg transition-colors">
+                        <h4 class="font-bold text-xl mb-1 text-white">Alex Developer</h4>
+                        <p class="text-gfg-light font-medium text-sm mb-4">President</p>
+                        <a href="#" class="text-gray-400 hover:text-[#0077b5] transition-colors inline-block text-xl"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                    <!-- Team Member 2 -->
+                    <div class="glass-card p-6 rounded-2xl text-center group">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah&backgroundColor=000000" alt="Sarah" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-dark group-hover:border-gfg transition-colors">
+                        <h4 class="font-bold text-xl mb-1 text-white">Sarah Chen</h4>
+                        <p class="text-gfg-light font-medium text-sm mb-4">Vice President</p>
+                        <a href="#" class="text-gray-400 hover:text-[#0077b5] transition-colors inline-block text-xl"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                    <!-- Team Member 3 -->
+                    <div class="glass-card p-6 rounded-2xl text-center group">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Michael&backgroundColor=0f172a" alt="Michael" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-dark group-hover:border-gfg transition-colors">
+                        <h4 class="font-bold text-xl mb-1 text-white">Michael Doe</h4>
+                        <p class="text-gfg-light font-medium text-sm mb-4">Tech Lead</p>
+                        <a href="#" class="text-gray-400 hover:text-[#0077b5] transition-colors inline-block text-xl"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                    <!-- Team Member 4 -->
+                    <div class="glass-card p-6 rounded-2xl text-center group">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Emma&backgroundColor=10b981" alt="Emma" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-dark group-hover:border-gfg transition-colors">
+                        <h4 class="font-bold text-xl mb-1 text-white">Emma Davis</h4>
+                        <p class="text-gfg-light font-medium text-sm mb-4">Event Manager</p>
+                        <a href="#" class="text-gray-400 hover:text-[#0077b5] transition-colors inline-block text-xl"><i class="fa-brands fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- 3. EVENTS SECTION -->
+        <section id="events" class="min-h-screen py-24 px-4 border-t border-white/5 relative overflow-hidden">
+            <!-- Background Decoration -->
+            <div class="absolute top-40 right-0 w-96 h-96 bg-gfg/10 rounded-full blur-[120px] -z-10"></div>
+            
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Campus <span class="text-gfg">Events</span></h2>
+                    <div class="h-1 w-20 bg-gfg mx-auto rounded mb-6"></div>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">Join us offline and online to level up your skills, compete with peers, and network with industry experts.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Event 1 -->
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full group">
+                        <div class="h-48 bg-gray-800 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Hackathon" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 right-4 bg-white/10 backdrop-blur-md px-3 py-1 rounded text-white font-bold text-sm border border-white/20">
+                                24 Hrs
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex items-center gap-2 text-gfg-light text-sm font-bold mb-3">
+                                <i class="fa-regular fa-calendar text-white"></i> Oct 25, 2026
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Hackathon 2026</h3>
+                            <p class="text-gray-400 mb-6 flex-grow">Our flagship 24-hour campus coding challenge. Build innovative solutions, compete for prizes, and get noticed by recruiters.</p>
+                            <button class="w-full bg-gfg/20 hover:bg-gfg text-white border border-gfg/50 py-3 rounded-xl font-bold transition-all flex items-center justify-center gap-2 group-hover:border-gfg">
+                                Register Now <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Event 2 -->
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full group">
+                        <div class="h-48 bg-gray-800 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Workshop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 right-4 bg-white/10 backdrop-blur-md px-3 py-1 rounded text-white font-bold text-sm border border-white/20">
+                                Offline
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex items-center gap-2 text-gfg-light text-sm font-bold mb-3">
+                                <i class="fa-regular fa-calendar text-white"></i> Oct 10, 2026
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">DSA Technical Workshop</h3>
+                            <p class="text-gray-400 mb-6 flex-grow">A deep dive into advanced graph algorithms and dynamic programming specifically tailored for campus placement preparation.</p>
+                            <button class="w-full bg-gfg/10 hover:bg-white/10 text-white border border-white/10 py-3 rounded-xl font-bold transition-all flex items-center justify-center gap-2">
+                                Register Now <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Event 3 -->
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full group">
+                        <div class="h-48 bg-gray-800 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Contest" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 right-4 bg-white/10 backdrop-blur-md px-3 py-1 rounded text-white font-bold text-sm border border-white/20">
+                                Contest
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex items-center gap-2 text-gfg-light text-sm font-bold mb-3">
+                                <i class="fa-regular fa-calendar text-white"></i> Weekly (Sundays)
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Weekly Coding Contest</h3>
+                            <p class="text-gray-400 mb-6 flex-grow">Test your competitive programming skills in our weekly 90-minute online algorithmic challenge. Earn 'Geek Bits' for leaderboard ranking.</p>
+                            <button class="w-full bg-gfg hover:bg-gfg-dark text-white border border-gfg py-3 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-gfg/20">
+                                Enter Arena <i class="fa-solid fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                     <button class="text-gray-300 hover:text-white font-medium hover:underline decoration-gfg underline-offset-4 transition-all">View Full Event Calendar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. RESOURCES SECTION -->
+        <section id="resources" class="min-h-screen py-24 px-4 bg-black/20 border-t border-white/5 relative">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Learning <span class="text-gfg">Resources</span></h2>
+                    <div class="h-1 w-20 bg-gfg mx-auto rounded mb-6"></div>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">Curated materials, practice questions, and roadmaps to guide you from beginner to interview-ready.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Beginner Programming -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-bl-[100px] -z-10 transition-transform group-hover:scale-110"></div>
+                        <i class="fa-solid fa-code text-4xl text-blue-400 mb-6"></i>
+                        <h3 class="text-2xl font-bold text-white mb-4">Beginner Programming</h3>
+                        <p class="text-gray-400 mb-8 flex-grow">Just starting out? Learn language syntax, basic logic, and foundational programming concepts.</p>
+                        
+                        <div class="space-y-4">
+                            <a href="#" class="block bg-white/5 hover:bg-white/10 p-4 rounded-xl border border-white/5 hover:border-blue-400/50 transition-all text-white font-medium flex justify-between items-center group/link">
+                                Introduction to C++ <i class="fa-solid fa-arrow-right text-gray-500 group-hover/link:text-blue-400 transition-colors"></i>
+                            </a>
+                            <a href="#" class="block bg-white/5 hover:bg-white/10 p-4 rounded-xl border border-white/5 hover:border-blue-400/50 transition-all text-white font-medium flex justify-between items-center group/link">
+                                Java Basics <i class="fa-solid fa-arrow-right text-gray-500 group-hover/link:text-blue-400 transition-colors"></i>
+                            </a>
+                            <a href="#" class="block bg-white/5 hover:bg-white/10 p-4 rounded-xl border border-white/5 hover:border-blue-400/50 transition-all text-white font-medium flex justify-between items-center group/link">
+                                Python Fundamentals <i class="fa-solid fa-arrow-right text-gray-500 group-hover/link:text-blue-400 transition-colors"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- DSA Preparation -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col relative overflow-hidden group border-gfg/30 transform md:-translate-y-4 shadow-xl shadow-gfg/10">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-gfg/10 rounded-bl-[100px] -z-10 transition-transform group-hover:scale-110"></div>
+                        <div class="absolute top-4 right-4 bg-gfg/20 text-gfg-light px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">Most Popular</div>
+                        
+                        <i class="fa-solid fa-layer-group text-4xl text-gfg mb-6"></i>
+                        <h3 class="text-2xl font-bold text-white mb-4">DSA Preparation</h3>
+                        <p class="text-gray-400 mb-8 flex-grow">Master Data Structures and Algorithms. The core requirement for all product-based company interviews.</p>
+                        
+                        <div class="space-y-4">
+                            <a href="#" class="block bg-gfg/10 hover:bg-gfg/20 p-4 rounded-xl border border-gfg/20 hover:border-gfg transition-all text-white font-medium flex justify-between items-center group/link">
+                                Arrays & Strings <i class="fa-solid fa-arrow-right text-gfg-light opacity-50 group-hover/link:opacity-100 transition-opacity"></i>
+                            </a>
+                            <a href="#" class="block bg-gfg/10 hover:bg-gfg/20 p-4 rounded-xl border border-gfg/20 hover:border-gfg transition-all text-white font-medium flex justify-between items-center group/link">
+                                Linked Lists <i class="fa-solid fa-arrow-right text-gfg-light opacity-50 group-hover/link:opacity-100 transition-opacity"></i>
+                            </a>
+                            <a href="#" class="block bg-gfg/10 hover:bg-gfg/20 p-4 rounded-xl border border-gfg/20 hover:border-gfg transition-all text-white font-medium flex justify-between items-center group/link">
+                                Dynamic Programming <i class="fa-solid fa-arrow-right text-gfg-light opacity-50 group-hover/link:opacity-100 transition-opacity"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Interview Preparation -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-bl-[100px] -z-10 transition-transform group-hover:scale-110"></div>
+                        <i class="fa-solid fa-briefcase text-4xl text-purple-400 mb-6"></i>
+                        <h3 class="text-2xl font-bold text-white mb-4">Interview Preparation</h3>
+                        <p class="text-gray-400 mb-8 flex-grow">Company specific prep, mock interviews, system design, and core CS subjects.</p>
+                        
+                        <div class="space-y-4">
+                            <a href="#" class="block bg-white/5 hover:bg-white/10 p-4 rounded-xl border border-white/5 hover:border-purple-400/50 transition-all text-white font-medium flex justify-between items-center group/link">
+                                System Design <i class="fa-solid fa-arrow-right text-gray-500 group-hover/link:text-purple-400 transition-colors"></i>
+                            </a>
+                            <a href="#" class="block bg-white/5 hover:bg-white/10 p-4 rounded-xl border border-white/5 hover:border-purple-400/50 transition-all text-white font-medium flex justify-between items-center group/link">
+                                Core CS Subjects (OS/DBMS) <i class="fa-solid fa-arrow-right text-gray-500 group-hover/link:text-purple-400 transition-colors"></i>
+                            </a>
+                            <a href="#" class="block bg-white/5 hover:bg-white/10 p-4 rounded-xl border border-white/5 hover:border-purple-400/50 transition-all text-white font-medium flex justify-between items-center group/link">
+                                Company Specific SDE Sheets <i class="fa-solid fa-arrow-right text-gray-500 group-hover/link:text-purple-400 transition-colors"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. LEADERBOARD SECTION -->
+        <section id="leaderboard" class="min-h-screen py-24 px-4 border-t border-white/5 relative">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Campus <span class="text-gfg">Leaderboard</span></h2>
+                    <div class="h-1 w-20 bg-gfg mx-auto rounded mb-6"></div>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">Top coders recognized for their consistent problem-solving across GfG POTD and weekly contests.</p>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-white/5 text-gray-300 uppercase text-sm tracking-wider">
+                                    <th class="p-4 border-b border-white/10 text-center w-20">Rank</th>
+                                    <th class="p-4 border-b border-white/10">Student</th>
+                                    <th class="p-4 border-b border-white/10 text-right w-32">Points</th>
+                                    <th class="p-4 border-b border-white/10 text-center w-32">Badge</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Rank 1 -->
+                                <tr class="border-b border-white/5 hover:bg-white/5 transition-colors group">
+                                    <td class="p-4 text-center">
+                                        <div class="w-10 h-10 mx-auto rounded-full bg-yellow-500/20 text-yellow-500 font-bold flex items-center justify-center border border-yellow-500/50 shadow-[0_0_15px_rgba(234,179,8,0.2)]">1</div>
+                                    </td>
+                                    <td class="p-4">
+                                        <div class="flex items-center gap-4">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Rahul&backgroundColor=eab308" alt="Rahul" class="w-12 h-12 rounded-full border-2 border-transparent group-hover:border-yellow-500 transition-colors">
+                                            <div>
+                                                <div class="font-bold text-white text-lg">Rahul</div>
+                                                <div class="text-xs text-gray-500">CS Junior</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-4 text-right font-bold text-gfg-light text-lg">120</td>
+                                    <td class="p-4 text-center">
+                                        <span class="inline-flex items-center gap-1 bg-yellow-500/10 text-yellow-500 px-3 py-1 rounded-full text-xs font-bold border border-yellow-500/20">
+                                            <i class="fa-solid fa-medal"></i> Gold
+                                        </span>
+                                    </td>
+                                </tr>
+                                <!-- Rank 2 -->
+                                <tr class="border-b border-white/5 hover:bg-white/5 transition-colors group">
+                                    <td class="p-4 text-center">
+                                        <div class="w-10 h-10 mx-auto rounded-full bg-gray-400/20 text-gray-300 font-bold flex items-center justify-center border border-gray-400/50">2</div>
+                                    </td>
+                                    <td class="p-4">
+                                        <div class="flex items-center gap-4">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Priya&backgroundColor=9ca3af" alt="Priya" class="w-12 h-12 rounded-full border-2 border-transparent group-hover:border-gray-400 transition-colors">
+                                            <div>
+                                                <div class="font-bold text-white text-lg">Priya</div>
+                                                <div class="text-xs text-gray-500">IT Senior</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-4 text-right font-bold text-gfg-light text-lg">110</td>
+                                    <td class="p-4 text-center">
+                                        <span class="inline-flex items-center gap-1 bg-gray-400/10 text-gray-300 px-3 py-1 rounded-full text-xs font-bold border border-gray-400/20">
+                                            <i class="fa-solid fa-medal"></i> Silver
+                                        </span>
+                                    </td>
+                                </tr>
+                                <!-- Rank 3 -->
+                                <tr class="border-b border-white/5 hover:bg-white/5 transition-colors group">
+                                    <td class="p-4 text-center">
+                                        <div class="w-10 h-10 mx-auto rounded-full bg-orange-700/20 text-orange-400 font-bold flex items-center justify-center border border-orange-700/50">3</div>
+                                    </td>
+                                    <td class="p-4">
+                                        <div class="flex items-center gap-4">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Arjun&backgroundColor=f97316" alt="Arjun" class="w-12 h-12 rounded-full border-2 border-transparent group-hover:border-orange-400 transition-colors">
+                                            <div>
+                                                <div class="font-bold text-white text-lg">Arjun</div>
+                                                <div class="text-xs text-gray-500">CS Sophomore</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-4 text-right font-bold text-gfg-light text-lg">95</td>
+                                    <td class="p-4 text-center">
+                                        <span class="inline-flex items-center gap-1 bg-orange-700/10 text-orange-400 px-3 py-1 rounded-full text-xs font-bold border border-orange-700/20">
+                                            <i class="fa-solid fa-medal"></i> Bronze
+                                        </span>
+                                    </td>
+                                </tr>
+                                <!-- Rank 4 -->
+                                <tr class="hover:bg-white/5 transition-colors group">
+                                    <td class="p-4 text-center text-gray-500 font-bold">4</td>
+                                    <td class="p-4">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 font-bold">NK</div>
+                                            <div>
+                                                <div class="font-bold text-gray-300 text-lg">Neha K.</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-4 text-right font-bold text-gfg-light text-lg">82</td>
+                                    <td class="p-4 text-center">
+                                        <span class="inline-flex items-center gap-1 bg-gray-800 text-gray-400 px-3 py-1 rounded-full text-xs font-bold">
+                                            Member
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. AI ROADMAP GENERATOR SECTION ⭐ -->
+        <section id="ai-roadmap" class="min-h-screen py-24 px-4 bg-black/20 border-t border-white/5 relative overflow-hidden">
+            <!-- AI Glow background -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gfg-light/10 rounded-full blur-[150px] -z-10 pointer-events-none"></div>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gfg-light/10 text-gfg-light border border-gfg-light/20 font-bold text-sm mb-6 shadow-[0_0_15px_rgba(74,222,128,0.2)]">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> AI Powered
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Smart <span class="text-transparent bg-clip-text bg-gradient-to-r from-gfg-light to-gfg">Roadmap Generator</span></h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">Tell us your goals and current level, and our AI will generate a customized week-by-week learning path just for you.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Input Form (Left) -->
+                    <div class="lg:col-span-4 glass-card p-8 rounded-2xl border-t-4 border-t-gfg-light relative z-10 shadow-2xl">
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-3"><i class="fa-solid fa-sliders text-gfg-light"></i> Your Profile</h3>
+                        
+                        <form id="roadmap-form" class="space-y-6">
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Skill Level</label>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <label class="cursor-pointer">
+                                        <input type="radio" name="level" value="Beginner" class="peer sr-only" checked>
+                                        <div class="text-center py-2 px-1 rounded-lg border border-white/10 bg-white/5 peer-checked:bg-gfg/20 peer-checked:border-gfg peer-checked:text-white text-gray-400 text-sm font-medium transition-all">Beginner</div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="radio" name="level" value="Intermediate" class="peer sr-only">
+                                        <div class="text-center py-2 px-1 rounded-lg border border-white/10 bg-white/5 peer-checked:bg-gfg/20 peer-checked:border-gfg peer-checked:text-white text-gray-400 text-sm font-medium transition-all">Interm.</div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="radio" name="level" value="Advanced" class="peer sr-only">
+                                        <div class="text-center py-2 px-1 rounded-lg border border-white/10 bg-white/5 peer-checked:bg-gfg/20 peer-checked:border-gfg peer-checked:text-white text-gray-400 text-sm font-medium transition-all">Advanced</div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Primary Language</label>
+                                <select class="w-full bg-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-gfg-light focus:ring-1 focus:ring-gfg-light appearance-none">
+                                    <option value="cpp">C++</option>
+                                    <option value="java">Java</option>
+                                    <option value="python">Python</option>
+                                    <option value="javascript">JavaScript</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Primary Goal</label>
+                                <select class="w-full bg-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-gfg-light focus:ring-1 focus:ring-gfg-light appearance-none">
+                                    <option value="placement">Cracking Placements</option>
+                                    <option value="cp">Competitive Programming</option>
+                                    <option value="dev">Web Development</option>
+                                    <option value="basics">Learning Basics</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Time Commitment</label>
+                                <div class="flex gap-4 items-center">
+                                    <input type="range" min="1" max="6" value="2" class="w-full accent-gfg text-gfg bg-dark" id="timeSlider" oninput="document.getElementById('timeValue').innerText = this.value">
+                                    <span class="bg-dark px-3 py-1 rounded font-bold text-gfg-light border border-white/10 min-w-[80px] text-center"><span id="timeValue">2</span> hrs/day</span>
+                                </div>
+                            </div>
+
+                            <button type="button" onclick="generateRoadmap()" class="w-full bg-gradient-to-r from-gfg to-gfg-light hover:from-gfg-dark hover:to-gfg text-black font-extrabold py-4 rounded-xl shadow-[0_0_20px_rgba(74,222,128,0.3)] hover:shadow-[0_0_30px_rgba(74,222,128,0.5)] transition-all flex justify-center items-center gap-3">
+                                <i class="fa-solid fa-microchip"></i> Generate Learning Path
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Output Interface (Right) -->
+                    <div class="lg:col-span-8 glass-card rounded-2xl overflow-hidden shadow-2xl border border-white/5 relative min-h-[500px] flex flex-col">
+                        
+                        <!-- Header -->
+                        <div class="bg-black/30 p-4 border-b border-white/5 flex justify-between items-center z-10">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gfg/20 flex items-center justify-center text-gfg-light text-xl">
+                                    <i class="fa-solid fa-robot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Geek Mentor AI</h4>
+                                    <span class="text-xs text-gfg-light flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-gfg-light animate-pulse"></span> Online Engine</span>
+                                </div>
+                            </div>
+                            <button class="text-gray-400 hover:text-white transition-colors" title="Export to PDF"><i class="fa-solid fa-download"></i></button>
+                        </div>
+
+                        <!-- Content Area -->
+                        <div id="roadmap-content" class="p-8 flex-grow flex flex-col justify-center items-center text-center relative z-10 bg-dark/50">
+                            
+                            <!-- Initial Empty State -->
+                            <div id="empty-state" class="block">
+                                <i class="fa-solid fa-map text-6xl text-gray-700 mb-6"></i>
+                                <h3 class="text-2xl font-bold text-gray-400 mb-2">Your Roadmap Awaits</h3>
+                                <p class="text-gray-500 max-w-sm mx-auto">Configure your profile on the left and click generate to build your custom learning schedule.</p>
+                            </div>
+
+                            <!-- Loading State (Hidden by default) -->
+                            <div id="loading-state" class="hidden flex-col items-center">
+                                <div class="w-16 h-16 border-4 border-gray-800 border-t-gfg-light rounded-full animate-spin mb-6"></div>
+                                <h3 class="text-xl font-bold text-white mb-2">AI is analyzing...</h3>
+                                <p class="text-gfg-light animate-pulse inline-block">Synthesizing optimal curriculum paths</p>
+                            </div>
+
+                            <!-- Result State (Hidden by default) -->
+                            <div id="result-state" class="hidden w-full text-left space-y-6 max-h-[500px] overflow-y-auto no-scrollbar pr-2 pb-8">
+                                <div class="bg-white/5 border border-gfg/30 p-4 rounded-xl mb-6">
+                                    <h4 class="text-gfg-light font-bold mb-1"><i class="fa-solid fa-bullseye"></i> Goal: Cracking Placements (C++)</h4>
+                                    <p class="text-sm text-gray-400">Based on 2 hrs/day commitment for a Beginner.</p>
+                                </div>
+
+                                <div class="relative border-l-2 border-gray-700 ml-4 space-y-8 pb-4">
+                                    <!-- Week 1 -->
+                                    <div class="relative pl-8">
+                                        <div class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-gfg border-4 border-dark"></div>
+                                        <h4 class="text-lg font-bold text-white mb-2">Week 1: Foundations & Arrays</h4>
+                                        <ul class="text-gray-400 space-y-2 text-sm list-disc list-inside">
+                                            <li>Day 1-2: Time & Space Complexity Analysis</li>
+                                            <li>Day 3-5: Array operations, Two Pointers Technique</li>
+                                            <li>Day 6-7: Sliding Window basics</li>
+                                        </ul>
+                                    </div>
+                                    <!-- Week 2 -->
+                                    <div class="relative pl-8">
+                                        <div class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-gray-700 border-4 border-dark"></div>
+                                        <h4 class="text-lg font-bold text-white mb-2 opacity-80">Week 2: Strings & Hashing</h4>
+                                        <ul class="text-gray-500 space-y-2 text-sm list-disc list-inside">
+                                            <li>Day 1-3: String manipulations & Pattern matching</li>
+                                            <li>Day 4-6: HashMaps & HashSets implementation</li>
+                                            <li>Day 7: Weekly Revision Contest</li>
+                                        </ul>
+                                    </div>
+                                    <!-- Week 3 -->
+                                    <div class="relative pl-8">
+                                        <div class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-gray-700 border-4 border-dark"></div>
+                                        <h4 class="text-lg font-bold text-white mb-2 opacity-80">Week 3: Linked Lists</h4>
+                                        <ul class="text-gray-500 space-y-2 text-sm list-disc list-inside">
+                                            <li>Day 1-2: Singly & Doubly Linked Lists</li>
+                                            <li>Day 3-5: Reversal, Tortoise & Hare algorithm</li>
+                                            <li>Day 6-7: Standard Interview Questions</li>
+                                        </ul>
+                                    </div>
+                                    <div class="relative pl-8 pb-4">
+                                        <div class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-gray-700 border-4 border-dark"></div>
+                                        <h4 class="text-lg font-bold text-white mb-2 opacity-80">Week 4: Trees & Recursion</h4>
+                                        <p class="text-gray-600 text-sm italic">Unlock next phase upon completion...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Script to handle pseudo-AI interaction -->
+        <script>
+            function generateRoadmap() {
+                const emptyState = document.getElementById('empty-state');
+                const loadState = document.getElementById('loading-state');
+                const resState = document.getElementById('result-state');
+
+                emptyState.classList.add('hidden');
+                resState.classList.add('hidden');
+                loadState.classList.remove('hidden');
+                loadState.classList.add('flex');
+
+                // Simulate AI processing delay
+                setTimeout(() => {
+                    loadState.classList.remove('flex');
+                    loadState.classList.add('hidden');
+                    
+                    resState.classList.remove('hidden');
+                    resState.classList.add('block');
+                }, 2000);
+            }
+        </script>
+
+        <!-- 7. CONTACT SECTION & FOOTER -->
+        <section id="contact" class="pt-24 pb-0 bg-black/40 border-t border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-4">Get in <span class="text-gfg">Touch</span></h2>
+                    <div class="h-1 w-20 bg-gfg mx-auto rounded mb-6"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 mb-24">
+                    <!-- Contact Info -->
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4">Connect With Us</h3>
+                            <p class="text-gray-400 text-lg">Have questions about the club, upcoming events, or need guidance? Reach out, we're here to help.</p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <a href="mailto:contact@gfgrit.edu" class="flex items-center gap-4 text-gray-300 hover:text-white group">
+                                <div class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-gfg group-hover:bg-gfg group-hover:text-white transition-all">
+                                    <i class="fa-solid fa-envelope text-xl"></i>
+                                </div>
+                                <span class="text-lg">contact@gfgrit.edu</span>
+                            </a>
+                            <a href="#" class="flex items-center gap-4 text-gray-300 hover:text-white group">
+                                <div class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-[#5865F2] group-hover:bg-[#5865F2] group-hover:text-white transition-all">
+                                    <i class="fa-brands fa-discord text-xl"></i>
+                                </div>
+                                <span class="text-lg">Join our Discord Server</span>
+                            </a>
+                            <a href="#" class="flex items-center gap-4 text-gray-300 hover:text-white group">
+                                <div class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-[#E1306C] group-hover:bg-gradient-to-tr from-[#FD1D1D] via-[#E1306C] to-[#C13584] group-hover:text-white transition-all">
+                                    <i class="fa-brands fa-instagram text-xl"></i>
+                                </div>
+                                <span class="text-lg">@gfg.rit</span>
+                            </a>
+                            <a href="#" class="flex items-center gap-4 text-gray-300 hover:text-white group">
+                                <div class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-[#0077b5] group-hover:bg-[#0077b5] group-hover:text-white transition-all">
+                                    <i class="fa-brands fa-linkedin text-xl"></i>
+                                </div>
+                                <span class="text-lg">GeeksforGeeks RIT Chapter</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="glass-card p-8 rounded-2xl">
+                        <form class="space-y-6">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-400 mb-2">First Name</label>
+                                    <input type="text" class="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gfg focus:ring-1 focus:ring-gfg placeholder-gray-600" placeholder="John">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-400 mb-2">Last Name</label>
+                                    <input type="text" class="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gfg focus:ring-1 focus:ring-gfg placeholder-gray-600" placeholder="Doe">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
+                                <input type="email" class="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gfg focus:ring-1 focus:ring-gfg placeholder-gray-600" placeholder="john@example.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Message</label>
+                                <textarea rows="4" class="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gfg focus:ring-1 focus:ring-gfg placeholder-gray-600 resize-none" placeholder="How can we help you?"></textarea>
+                            </div>
+                            <button type="button" class="w-full bg-gfg hover:bg-gfg-light text-white font-bold py-3 rounded-lg shadow-lg shadow-gfg/20 transition-all flex justify-center items-center gap-2">
+                                Send Message <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="border-t border-white/10 py-8 bg-black/50 text-center">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <img src="https://media.geeksforgeeks.org/gfg-gg-logo.svg" alt="GfG Logo" class="w-8 h-8 rounded opacity-80 select-none">
+                    <span class="font-bold text-gray-400 tracking-tight">GeeksforGeeks <span class="text-gfg">RIT</span></span>
+                </div>
+                <p class="text-gray-500 text-sm">© 2026 GeeksforGeeks RIT Campus Club. All rights reserved.</p>
+                <div class="mt-4 space-x-4 text-xs font-medium text-gray-600">
+                    <a href="#" class="hover:text-gfg transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-gfg transition-colors">Terms of Service</a>
+                </div>
+            </footer>
+        </section>
+
+        <!-- Script for mobile menu -->
+        <script>
+            // Smooth scrolling helper for logo
+            function scrollToSection(id) {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        </script>
+        
     </main>
-
-    <!-- Footer -->
-    <footer class="border-t border-white/10 py-8 bg-black/50 text-center">
-        <div class="flex items-center justify-center gap-3 mb-4">
-            <img src="https://media.geeksforgeeks.org/gfg-gg-logo.svg" alt="GfG Logo" class="w-8 h-8 rounded opacity-80 select-none">
-            <span class="font-bold text-gray-400 tracking-tight">GeeksforGeeks <span class="text-gfg">RIT</span></span>
-        </div>
-        <p class="text-gray-500 text-sm">© 2026 GeeksforGeeks RIT Campus Club. All rights reserved.</p>
-        <div class="mt-4 space-x-4 text-xs font-medium text-gray-600">
-            <a href="#" class="hover:text-gfg transition-colors">Privacy Policy</a>
-            <a href="#" class="hover:text-gfg transition-colors">Terms of Service</a>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="script.js"></script>
 </body>
 </html>
