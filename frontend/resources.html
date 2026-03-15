@@ -44,60 +44,29 @@
             <p class="text-gray-400 max-w-2xl mx-auto text-lg">Curated materials, practice questions, and roadmaps to guide you from beginner to interview-ready.</p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            <!-- Beginner Programming -->
-            <div class="glass-card p-8 rounded-2xl flex flex-col relative overflow-hidden group">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-bl-[100px] -z-10 transition-transform group-hover:scale-110"></div>
-                <i class="fa-solid fa-code text-4xl text-blue-400 mb-6"></i>
-                <h3 class="text-2xl font-bold text-white mb-4">Beginner Programming</h3>
-                <p class="text-gray-400 mb-8 flex-grow">Just starting out? Learn language syntax, basic logic, and foundational programming concepts.</p>
-                <div class="space-y-4">
-                    <a href="#" class="block bg-white/5 hover:bg-white/10 p-4 rounded-xl border border-white/5 hover:border-blue-400/50 transition-all text-white font-medium flex justify-between items-center group/link">
-                        Introduction to C++ <i class="fa-solid fa-arrow-right text-gray-500 group-hover/link:text-blue-400 transition-colors"></i>
-                    </a>
-                    <a href="#" class="block bg-white/5 hover:bg-white/10 p-4 rounded-xl border border-white/5 hover:border-blue-400/50 transition-all text-white font-medium flex justify-between items-center group/link">
-                        Java Basics <i class="fa-solid fa-arrow-right text-gray-500 group-hover/link:text-blue-400 transition-colors"></i>
-                    </a>
-                </div>
-            </div>
+        <!-- Category Filter Buttons -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12" id="resource-filters">
+            <button onclick="filterResources('')" class="resource-filter-btn active bg-gfg/20 text-gfg-light px-5 py-2 rounded-full text-sm font-bold border border-gfg/30 hover:bg-gfg/30 transition-all">All</button>
+            <button onclick="filterResources('Beginner')" class="resource-filter-btn bg-white/5 text-gray-300 px-5 py-2 rounded-full text-sm font-bold border border-white/10 hover:bg-blue-500/20 hover:text-blue-400 hover:border-blue-400/30 transition-all">
+                <i class="fa-solid fa-code mr-1"></i> Beginner
+            </button>
+            <button onclick="filterResources('DSA')" class="resource-filter-btn bg-white/5 text-gray-300 px-5 py-2 rounded-full text-sm font-bold border border-white/10 hover:bg-gfg/20 hover:text-gfg-light hover:border-gfg/30 transition-all">
+                <i class="fa-solid fa-layer-group mr-1"></i> DSA
+            </button>
+            <button onclick="filterResources('Interview')" class="resource-filter-btn bg-white/5 text-gray-300 px-5 py-2 rounded-full text-sm font-bold border border-white/10 hover:bg-purple-500/20 hover:text-purple-400 hover:border-purple-400/30 transition-all">
+                <i class="fa-solid fa-briefcase mr-1"></i> Interview
+            </button>
+        </div>
 
-            <!-- DSA Preparation -->
-            <div class="glass-card p-8 rounded-2xl flex flex-col relative overflow-hidden group border-gfg/30 transform md:-translate-y-4 shadow-xl shadow-gfg/10">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-gfg/10 rounded-bl-[100px] -z-10 transition-transform group-hover:scale-110"></div>
-                <div class="absolute top-4 right-4 bg-gfg/20 text-gfg-light px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">Most Popular</div>
-                
-                <i class="fa-solid fa-layer-group text-4xl text-gfg mb-6"></i>
-                <h3 class="text-2xl font-bold text-white mb-4">DSA Preparation</h3>
-                <p class="text-gray-400 mb-8 flex-grow">Master Data Structures and Algorithms. Core requirement for tech interviews.</p>
-                
-                <div class="space-y-4">
-                    <a href="#" class="block bg-gfg/10 hover:bg-gfg/20 p-4 rounded-xl border border-gfg/20 hover:border-gfg transition-all text-white font-medium flex justify-between items-center group/link">
-                        Arrays & Strings <i class="fa-solid fa-arrow-right text-gfg-light opacity-50 group-hover/link:opacity-100 transition-opacity"></i>
-                    </a>
-                    <a href="#" class="block bg-gfg/10 hover:bg-gfg/20 p-4 rounded-xl border border-gfg/20 hover:border-gfg transition-all text-white font-medium flex justify-between items-center group/link">
-                        Dynamic Programming <i class="fa-solid fa-arrow-right text-gfg-light opacity-50 group-hover/link:opacity-100 transition-opacity"></i>
-                    </a>
-                </div>
-            </div>
+        <!-- Loading State -->
+        <div id="resources-loading" class="hidden text-center py-16">
+            <i class="fa-solid fa-spinner fa-spin text-gfg text-3xl mb-4"></i>
+            <p class="text-gray-400">Loading resources...</p>
+        </div>
 
-            <!-- Interview Preparation -->
-            <div class="glass-card p-8 rounded-2xl flex flex-col relative overflow-hidden group">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-bl-[100px] -z-10 transition-transform group-hover:scale-110"></div>
-                <i class="fa-solid fa-briefcase text-4xl text-purple-400 mb-6"></i>
-                <h3 class="text-2xl font-bold text-white mb-4">Interview Preparation</h3>
-                <p class="text-gray-400 mb-8 flex-grow">Company specific prep, mock interviews, system design, and core CS subjects.</p>
-                
-                <div class="space-y-4">
-                    <a href="#" class="block bg-white/5 hover:bg-white/10 p-4 rounded-xl border border-white/5 hover:border-purple-400/50 transition-all text-white font-medium flex justify-between items-center group/link">
-                        System Design <i class="fa-solid fa-arrow-right text-gray-500 group-hover/link:text-purple-400 transition-colors"></i>
-                    </a>
-                    <a href="#" class="block bg-white/5 hover:bg-white/10 p-4 rounded-xl border border-white/5 hover:border-purple-400/50 transition-all text-white font-medium flex justify-between items-center group/link">
-                        Core CS Subjects <i class="fa-solid fa-arrow-right text-gray-500 group-hover/link:text-purple-400 transition-colors"></i>
-                    </a>
-                </div>
-            </div>
-            
+        <!-- Dynamic Resources Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="resources-container">
+            <!-- Will be populated dynamically by script.js -->
         </div>
     </main>
 

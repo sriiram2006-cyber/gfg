@@ -11,6 +11,11 @@ exports.joinCommunity = async (req, res) => {
             return res.status(400).json({ success: false, error: 'Please provide all fields' });
         }
 
+        // Validate college email domain
+        if (!email.endsWith('ritchennai.edu.in')) {
+            return res.status(400).json({ success: false, error: 'Please use your @ritchennai.edu.in college email' });
+        }
+
         // Check if already a member
         const existing = await Member.findOne({ email });
         if (existing) {

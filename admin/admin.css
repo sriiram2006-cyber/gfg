@@ -1,0 +1,35 @@
+.admin-input {
+    width: 100%;
+    background: #0a0f1a;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 0.75rem;
+    padding: 0.65rem 1rem;
+    color: white;
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.admin-input:focus {
+    border-color: #2F8D46;
+    box-shadow: 0 0 0 1px #2F8D46;
+}
+.admin-tab {
+    background: transparent;
+    color: #6b7280;
+}
+.admin-tab:hover {
+    background: rgba(255,255,255,0.05);
+    color: #d1d5db;
+}
+.admin-tab.active {
+    background: rgba(47,141,70,0.15);
+    color: #4ade80;
+    border: 1px solid rgba(47,141,70,0.3);
+}
+.stat-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}

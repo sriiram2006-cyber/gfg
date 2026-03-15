@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem Solving - GfG RIT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Monaco Editor Loader -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gfg: { DEFAULT: '#2F8D46', light: '#4ade80', dark: '#166534' },
+                        dark: { DEFAULT: '#0f172a', card: '#1e293b', lighter: '#334155' }
+                    },
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        .editor-container { height: calc(100vh - 120px); }
+        .problem-detail { height: calc(100vh - 120px); overflow-y: auto; }
+        .resizer { cursor: col-resize; width: 4px; background: #e2e8f0; transition: background 0.2s; }
+        .resizer:hover { background: #2f8d46; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="h-full flex flex-col bg-[#fdfdfd] overflow-hidden">
+
+    <!-- Top Bar -->
+    <nav class="h-16 border-b border-gray-200 bg-white px-6 flex items-center justify-between z-50">
+        <div class="flex items-center gap-6">
+            <a href="challenges.html" class="text-gray-500 hover:text-gfg transition-colors flex items-center gap-2 font-medium">
+                <i class="fa-solid fa-chevron-left"></i> Problems
+            </a>
+            <div class="h-6 w-[1px] bg-gray-200"></div>
+            <h2 id="problem-title" class="font-bold text-[#1a1a2e] text-lg"><i class="fa-solid fa-spinner fa-spin text-gfg"></i> Loading...</h2>
+        </div>
+        <div class="flex items-center gap-4">
+            <select id="lang-select" class="bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-gfg/20">
+                <option value="python">Python 3</option>
+                <option value="cpp">C++ (GCC 9.2.0)</option>
+                <option value="java">Java (OpenJDK 13.0.1)</option>
+                <option value="javascript">JavaScript (Node.js 12.14.0)</option>
+            </select>
+            <button id="run-btn" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-1.5 px-4 rounded-lg text-sm transition-all">Run</button>
+            <button id="submit-btn" class="bg-gfg hover:bg-gfg-dark text-white font-bold py-1.5 px-6 rounded-lg text-sm shadow-md shadow-gfg/20 transition-all">Submit</button>
+        </div>
+    </nav>
+
+    <!-- Main Workspace -->
+    <main class="flex-grow flex overflow-hidden">
+        <!-- Problem Description Pane -->
+        <div id="problem-pane" class="w-[40%] problem-detail custom-scrollbar p-8 border-r border-gray-100">
+            <div id="problem-content" class="space-y-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <span id="problem-difficulty" class="px-3 py-1 bg-gfg/10 text-gfg rounded-full text-xs font-bold ring-1 ring-gfg/20">Difficulty</span>
+                        <div id="problem-tags" class="flex gap-2"></div>
+                    </div>
+                    <div id="problem-description" class="prose prose-slate max-w-none text-gray-700 leading-relaxed">
+                        <!-- Markdown-like content here -->
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-bold text-[#1a1a2e] flex items-center gap-2"><i class="fa-solid fa-input-pipe text-gfg"></i> Input Format</h3>
+                    <div id="input-format" class="bg-gray-50 p-4 rounded-xl text-sm text-gray-600 border border-gray-100"></div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-bold text-[#1a1a2e] flex items-center gap-2"><i class="fa-solid fa-output text-gfg"></i> Output Format</h3>
+                    <div id="output-format" class="bg-gray-50 p-4 rounded-xl text-sm text-gray-600 border border-gray-100"></div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-bold text-[#1a1a2e] flex items-center gap-2"><i class="fa-solid fa-vial text-gfg"></i> Sample Test Case</h3>
+                    <div class="space-y-3">
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Input</label>
+                            <pre id="sample-input" class="font-mono text-sm text-gray-700"></pre>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Output</label>
+                            <pre id="sample-output" class="font-mono text-sm text-gray-700"></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resizer -->
+        <div class="resizer"></div>
+
+        <!-- Editor Pane -->
+        <div id="editor-pane" class="flex-grow flex flex-col bg-white">
+            <div id="editor" class="flex-grow border-b border-gray-200"></div>
+            <!-- Results Pane -->
+            <div id="results-pane" class="h-48 bg-gray-50 border-t border-gray-200 flex flex-col">
+                <div class="px-6 py-2 border-b border-gray-200 flex items-center justify-between">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Console</span>
+                    <button id="clear-console-btn" class="text-xs text-gray-400 hover:text-gfg transition-colors">Clear</button>
+                </div>
+                <div id="console-output" class="flex-grow p-4 font-mono text-sm text-gray-600 overflow-y-auto custom-scrollbar">
+                    <p class="text-gray-400 italic">Run your code to see results here...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

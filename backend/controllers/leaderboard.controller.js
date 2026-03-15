@@ -1,20 +1,24 @@
 const Leaderboard = require('../models/Leaderboard');
+const Member = require('../models/Member');
 
 // @desc    Get top students on leaderboard
 // @route   GET /api/leaderboard
 // @access  Public
 exports.getLeaderboard = async (req, res) => {
     try {
-        const leaderboard = await Leaderboard.find().sort({ points: -1 }).limit(10);
+        // Fetch top members by score
+        const members = await Member.find().sort({ score: -1 }).limit(10);
         
-        // Add calculated ranks
-        const rankedBoard = leaderboard.map((student, index) => ({
-            ...student._doc,
+        // Map members to the format expected by the frontend leaderboard
+        const rankedBoard = members.map((member, index) => ({
+            studentName: member.name,
+            points: member.score,
             rank: index + 1
         }));
 
         res.status(200).json({ success: true, data: rankedBoard });
     } catch (error) {
+        console.error('Leaderboard error:', error);
         res.status(500).json({ success: false, error: 'Server Error' });
     }
 };

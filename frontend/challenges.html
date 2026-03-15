@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Challenges - GfG RIT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gfg: { DEFAULT: '#2F8D46', light: '#4ade80', dark: '#166534' },
+                        dark: { DEFAULT: '#0f172a', card: '#1e293b', lighter: '#334155' }
+                    },
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased min-h-screen flex flex-col bg-[#f8fafc]">
+
+    <!-- Navigation Bar (Reusing same style) -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <!-- Reusing same nav structure -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex-shrink-0 flex items-center gap-3 cursor-pointer">
+                    <img src="https://media.geeksforgeeks.org/gfg-gg-logo.svg" alt="GfG Logo" class="w-10 h-10 rounded">
+                    <span class="font-bold text-xl tracking-tight text-[#1a1a2e]">GeeksforGeeks <span class="text-gfg">RIT</span></span>
+                </a>
+                <div class="hidden lg:flex items-center flex-1 justify-evenly ml-8 lg:ml-12 pr-4">
+                    <a href="index.html" class="text-gray-600 hover:text-gfg transition-colors font-medium text-sm">Home</a>
+                    <a href="challenges.html" class="text-gfg font-bold text-sm">Challenges</a>
+                    <a href="leaderboard.html" class="text-gray-600 hover:text-gfg transition-colors font-medium text-sm">Leaderboard</a>
+                    <button id="auth-btn" class="bg-gfg hover:bg-gfg-dark text-white px-6 py-2.5 rounded-full font-semibold transition-all shadow-lg shadow-gfg/30 text-sm">Login</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-32 pb-24 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h1 class="text-4xl md:text-5xl font-bold text-[#1a1a2e] mb-4">Coding <span class="text-gfg">Challenges</span></h1>
+                <p class="text-gray-600 max-w-2xl mx-auto">Sharpen your skills with our curated set of problems. Solve them to climb the leaderboard!</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <!-- Filters -->
+                <div class="lg:col-span-1 space-y-6">
+                    <div class="glass-card p-6 rounded-2xl bg-white shadow-sm border border-gray-100">
+                        <h3 class="font-bold text-[#1a1a2e] mb-4 flex items-center gap-2"><i class="fa-solid fa-filter text-gfg"></i> Filters</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-xs uppercase font-bold text-gray-400 block mb-2">Difficulty</label>
+                                <div class="flex flex-wrap gap-2">
+                                    <button class="px-3 py-1.5 rounded-lg bg-gfg/10 text-gfg text-xs font-bold border border-gfg/20">All</button>
+                                    <button class="px-3 py-1.5 rounded-lg bg-gray-100 text-gray-500 text-xs font-bold border border-transparent hover:border-gray-200">Easy</button>
+                                    <button class="px-3 py-1.5 rounded-lg bg-gray-100 text-gray-500 text-xs font-bold border border-transparent hover:border-gray-200">Medium</button>
+                                    <button class="px-3 py-1.5 rounded-lg bg-gray-100 text-gray-500 text-xs font-bold border border-transparent hover:border-gray-200">Hard</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Problem List -->
+                <div class="lg:col-span-3 space-y-4" id="challenges-list">
+                    <!-- Dynamic problems here -->
+                    <div class="flex items-center justify-center py-20">
+                        <i class="fa-solid fa-spinner fa-spin text-3xl text-gfg"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Login Modal (Subtle) -->
+    <div id="auth-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl w-full max-w-md overflow-hidden shadow-2xl">
+            <div class="bg-gfg p-8 text-center relative">
+                <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-white/50 hover:text-white transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
+                <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-white/30 backdrop-blur-md">
+                    <i class="fa-solid fa-user text-white text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white">Welcome Back</h3>
+                <p class="text-white/80 text-sm">Login to start solving challenges</p>
+            </div>
+            <form id="login-form" class="p-8 space-y-4">
+                <div>
+                    <label class="text-xs font-bold text-gray-400 uppercase tracking-wider ml-1">Email</label>
+                    <input type="email" id="auth-email" required class="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gfg/20 transition-all mt-1" placeholder="name@ritchennai.edu.in">
+                </div>
+                <div>
+                    <label class="text-xs font-bold text-gray-400 uppercase tracking-wider ml-1">Password</label>
+                    <input type="password" id="auth-password" required class="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gfg/20 transition-all mt-1" placeholder="••••••••">
+                </div>
+                <button type="submit" class="w-full bg-gfg hover:bg-gfg-dark text-white font-bold py-4 rounded-xl shadow-lg shadow-gfg/30 transition-all mt-4">Login</button>
+                <p class="text-center text-gray-500 text-sm mt-4">Don't have an account? <a href="#" onclick="showSignup()" class="text-gfg font-bold">Join Community</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
