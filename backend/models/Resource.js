@@ -8,7 +8,7 @@ const ResourceSchema = new mongoose.Schema({
     category: {
         type: String,
         required: true,
-        enum: ['Beginner', 'DSA', 'Interview']
+        enum: ['Beginner Programming', 'DSA Preparation', 'Interview Prep']
     },
     link: {
         type: String,

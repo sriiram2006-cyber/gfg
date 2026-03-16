@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize specific page logic based on current path
     const path = window.location.pathname;
     
+    // Landing Page Detection
+    const isLandingPage = path === '/' || path.endsWith('index.html') || path.endsWith('Geeksforgeeks/') || path === '';
+    
     if(path.includes('events.html')) {
         fetchEvents();
         setupRegistrationForm();
@@ -41,23 +44,19 @@ document.addEventListener('DOMContentLoaded', () => {
         initCodingPage();
         initMemberAuth();
     }
+    
+    if (isLandingPage) {
+        console.log('Detected Landing Page - Fetching Previews');
+        fetchEventsPreview();
+        fetchLeaderboardPreview();
+    }
 
     // Setup Join Community buttons on ALL pages
     setupJoinCommunity();
 
-    // Setup floating AI Mentor chatbot button (on all pages except mentor.html)
-    if (!path.includes('mentor.html')) {
-        setupFloatingMentor();
-    }
+    // Setup Floating Action Buttons (Admin & AI Mentor)
+    setupFloatingButtons();
 
-    // Add subtle Admin Portal link (bottom-left corner)
-    const adminLink = document.createElement('a');
-    adminLink.href = 'http://127.0.0.1:3001/login.html';
-    adminLink.target = '_blank';
-    adminLink.className = 'fixed bottom-6 left-6 z-50 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-gfg/50 text-gray-500 hover:text-gfg-light w-10 h-10 rounded-full flex items-center justify-center transition-all group';
-    adminLink.innerHTML = '<i class="fa-solid fa-lock text-sm"></i>';
-    adminLink.title = 'Admin Portal';
-    document.body.appendChild(adminLink);
 });
 
 // ---------------------------------------------
@@ -233,7 +232,7 @@ async function fetchEvents() {
                             <h3 class="text-2xl font-bold text-white">${event.title}</h3>
                             <span class="bg-gfg/20 text-gfg-light px-3 py-1 rounded text-sm font-bold">${dateStr}</span>
                         </div>
-                        <p class="text-gray-400 mb-4 line-clamp-2">${event.description}</p>
+                        <p class="text-gray-300 mb-4 line-clamp-2">${event.description}</p>
                         <button class="text-sm border border-gfg text-gfg hover:bg-gfg hover:text-white px-4 py-2 rounded-lg transition-colors font-bold" onclick="document.getElementById('reg-event-id').value='${event._id}';">Select Event</button>
                     </div>
                 </div>`;
@@ -242,6 +241,41 @@ async function fetchEvents() {
         }
     } catch (error) {
         console.error('Error fetching events:', error);
+    }
+}
+
+async function fetchEventsPreview() {
+    const container = document.getElementById('events-preview-container');
+    if (!container) return;
+
+    try {
+        const response = await fetch(`${API_URL}/events`);
+        const data = await response.json();
+        
+        if (data.success && data.data.length > 0) {
+            container.innerHTML = '';
+            data.data.slice(0, 2).forEach(event => {
+                const dateObj = new Date(event.date);
+                const month = dateObj.toLocaleString('en-US', { month: 'short' });
+                const day = dateObj.getDate();
+                
+                const html = `
+                <div class="glass-card p-5 rounded-xl flex items-start gap-4 h-full">
+                    <div class="bg-gfg/20 text-gfg-light p-3 rounded-lg text-center min-w-[60px]">
+                        <span class="block text-xs uppercase font-bold">${month}</span>
+                        <span class="block text-xl font-extrabold">${day}</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">${event.title}</h3>
+                        <p class="text-gray-300 text-sm mb-3"><i class="fa-regular fa-clock"></i> ${event.time || 'TBA'}</p>
+                        <span class="text-xs font-bold bg-blue-500/20 text-blue-400 px-2 py-1 rounded">Update</span>
+                    </div>
+                </div>`;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+        }
+    } catch (err) {
+        console.error('Error fetching events preview:', err);
     }
 }
 
@@ -342,6 +376,35 @@ async function fetchLeaderboard() {
     }
 }
 
+async function fetchLeaderboardPreview() {
+    const container = document.getElementById('leaderboard-preview-container');
+    if (!container) return;
+
+    try {
+        const response = await fetch(`${API_URL}/leaderboard`);
+        const data = await response.json();
+        
+        if (data.success && data.data.length > 0) {
+            container.innerHTML = '';
+            data.data.slice(0, 3).forEach((student, idx) => {
+                const rank = idx + 1;
+                const rankColor = rank === 1 ? 'yellow-500' : rank === 2 ? 'gray-400' : 'orange-700';
+                const rowHtml = `
+                <div class="p-4 ${idx < 2 ? 'border-b border-gray-800' : ''} flex justify-between items-center ${idx === 0 ? 'bg-white/5' : ''}">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-${rankColor}/20 flex items-center justify-center text-${rankColor} font-bold border border-${rankColor}/50">${rank}</div>
+                        <span class="font-semibold ${idx > 0 ? 'text-gray-300' : 'text-white'}">${student.studentName}</span>
+                    </div>
+                    <span class="text-gfg-light font-bold">${student.points} pts</span>
+                </div>`;
+                container.insertAdjacentHTML('beforeend', rowHtml);
+            });
+        }
+    } catch (err) {
+        console.error('Error fetching leaderboard preview:', err);
+    }
+}
+
 // ---------------------------------------------
 // ROADMAP GENERATOR API INTEGRATION
 // ---------------------------------------------
@@ -394,7 +457,7 @@ function setupRoadmapForm() {
                     <div class="relative pl-8 pb-4">
                         <div class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-${color} border-4 border-dark"></div>
                         <h4 class="text-lg font-bold ${activeClass} mb-2">Week ${weekObj.week}: ${weekObj.title}</h4>
-                        <ul class="text-gray-400 space-y-2 text-sm list-disc list-inside">
+                        <ul class="text-gray-300 space-y-2 text-sm list-disc list-inside">
                             ${liItems}
                         </ul>
                     </div>
@@ -425,80 +488,63 @@ function setupRoadmapForm() {
 // ---------------------------------------------
 let allResources = [];
 
-async function fetchResources(category = '') {
-    const container = document.getElementById('resources-container');
+async function fetchResources() {
     const loading = document.getElementById('resources-loading');
-    if (!container) return;
+    const containers = {
+        'Beginner Programming': document.getElementById('category-beginner'),
+        'DSA Preparation': document.getElementById('category-dsa'),
+        'Interview Prep': document.getElementById('category-interview')
+    };
+    
+    // Safety check: if containers don't exist, we aren't on the resources page
+    if (!containers['Beginner Programming']) return;
 
     loading?.classList.remove('hidden');
-    container.innerHTML = '';
+    Object.values(containers).forEach(c => c.innerHTML = '');
 
     try {
-        const url = category ? `${API_URL}/resources?category=${category}` : `${API_URL}/resources`;
-        const res = await fetch(url);
+        const res = await fetch(`${API_URL}/resources`);
         const data = await res.json();
 
         if (data.success) {
-            allResources = data.data;
-            renderResources(allResources);
+            renderResourcesGrouped(data.data, containers);
         } else {
-            container.innerHTML = '<p class="text-red-400 col-span-3 text-center">Failed to load resources.</p>';
+            Object.values(containers).forEach(c => c.innerHTML = '<p class="text-red-400 text-xs">Failed to load content.</p>');
         }
     } catch (error) {
-        container.innerHTML = '<p class="text-red-400 col-span-3 text-center">Could not reach the server. Make sure the backend is running.</p>';
+        Object.values(containers).forEach(c => c.innerHTML = '<p class="text-red-400 text-xs text-center">Server unreachable.</p>');
     } finally {
         loading?.classList.add('hidden');
     }
 }
 
-function filterResources(category) {
-    // Update active button styling
-    document.querySelectorAll('.resource-filter-btn').forEach(btn => {
-        btn.classList.remove('active', 'bg-gfg/20', 'text-gfg-light', 'border-gfg/30');
-        btn.classList.add('bg-white/5', 'text-gray-300', 'border-white/10');
-    });
-    event.target.closest('button').classList.add('active', 'bg-gfg/20', 'text-gfg-light', 'border-gfg/30');
-    event.target.closest('button').classList.remove('bg-white/5', 'text-gray-300', 'border-white/10');
-
-    fetchResources(category);
-}
-
-function renderResources(resources) {
-    const container = document.getElementById('resources-container');
-    if (!container) return;
-    container.innerHTML = '';
-
-    const colorMap = {
-        'Beginner': { icon: 'fa-code', color: 'blue-400', bg: 'blue-500/10', border: 'blue-400/50' },
-        'DSA': { icon: 'fa-layer-group', color: 'gfg-light', bg: 'gfg/10', border: 'gfg' },
-        'Interview': { icon: 'fa-briefcase', color: 'purple-400', bg: 'purple-500/10', border: 'purple-400/50' }
-    };
-
-    const levelBadge = {
-        'Beginner': 'bg-blue-500/20 text-blue-400',
-        'Intermediate': 'bg-yellow-500/20 text-yellow-400',
-        'Advanced': 'bg-red-500/20 text-red-400'
+function renderResourcesGrouped(resources, containers) {
+    const styles = {
+        'Beginner Programming': { color: 'blue-400', hoverBg: 'blue-500/10', hoverBorder: 'blue-500/20' },
+        'DSA Preparation': { color: 'gfg-light', hoverBg: 'gfg/10', hoverBorder: 'gfg/20' },
+        'Interview Prep': { color: 'purple-400', hoverBg: 'purple-500/10', hoverBorder: 'purple-400/20' }
     };
 
     resources.forEach(r => {
-        const style = colorMap[r.category] || colorMap['DSA'];
-        const badge = levelBadge[r.level] || levelBadge['Beginner'];
+        const target = containers[r.category];
+        if (!target) return;
 
+        const style = styles[r.category] || styles['DSA Preparation'];
+        
         const html = `
-        <div class="glass-card p-6 rounded-2xl flex flex-col relative overflow-hidden group hover:border-${style.border} transition-all">
-            <div class="absolute top-0 right-0 w-28 h-28 bg-${style.bg} rounded-bl-[80px] -z-10 transition-transform group-hover:scale-110"></div>
-            <div class="flex justify-between items-start mb-4">
-                <i class="fa-solid ${style.icon} text-3xl text-${style.color}"></i>
-                <span class="${badge} px-3 py-1 rounded-full text-xs font-bold">${r.level}</span>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-2">${r.title}</h3>
-            <p class="text-gray-400 text-sm mb-4 flex-grow">${r.description || ''}</p>
-            <span class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-4">${r.category}</span>
-            <a href="${r.link}" target="_blank" class="block bg-${style.bg} hover:bg-${style.bg.replace('/10', '/20')} p-3 rounded-xl border border-${style.border.replace('/50', '/20')} hover:border-${style.border} transition-all text-white font-medium flex justify-between items-center group/link text-sm">
-                Open on GeeksforGeeks <i class="fa-solid fa-arrow-right text-${style.color} opacity-50 group-hover/link:opacity-100 transition-opacity"></i>
-            </a>
-        </div>`;
-        container.insertAdjacentHTML('beforeend', html);
+            <a href="${r.link}" target="_blank" class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-${style.hoverBg} hover:border-${style.hoverBorder} transition-all group/item">
+                <span class="text-gray-300 group-hover/item:text-white font-medium">${r.title}</span>
+                <i class="fa-solid fa-arrow-right text-${style.color} text-xs opacity-50 group-hover/item:opacity-100 transition-opacity"></i>
+            </a>`;
+        
+        target.insertAdjacentHTML('beforeend', html);
+    });
+
+    // Handle empty categories
+    Object.keys(containers).forEach(cat => {
+        if (containers[cat].children.length === 0) {
+            containers[cat].innerHTML = '<p class="text-gray-600 text-xs italic py-4">Stay tuned! Resources arriving soon.</p>';
+        }
     });
 }
 
@@ -548,22 +594,6 @@ function setupContactForm() {
     });
 }
 
-// ---------------------------------------------
-// FLOATING AI MENTOR BUTTON (All Pages)
-// ---------------------------------------------
-function setupFloatingMentor() {
-    const floatingHtml = `
-    <a href="mentor.html" id="floating-mentor-btn" class="fixed bottom-6 right-6 z-50 group cursor-pointer" title="Ask AI Mentor">
-        <div class="relative">
-            <div class="absolute inset-0 bg-gfg rounded-full animate-ping opacity-20 group-hover:opacity-40"></div>
-            <div class="relative w-14 h-14 bg-gradient-to-br from-gfg to-gfg-light rounded-full flex items-center justify-center shadow-[0_0_25px_rgba(74,222,128,0.4)] group-hover:shadow-[0_0_35px_rgba(74,222,128,0.6)] transition-all group-hover:scale-110">
-                <i class="fa-solid fa-robot text-white text-xl"></i>
-            </div>
-            <span class="absolute -top-8 right-0 bg-dark-card text-gfg-light text-xs font-bold px-3 py-1 rounded-lg border border-gfg/30 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg">Mentor 24/7 🤖</span>
-        </div>
-    </a>`;
-    document.body.insertAdjacentHTML('beforeend', floatingHtml);
-}
 
 // ---------------------------------------------
 // CODING CHALLENGE PLATFORM LOGIC
@@ -660,17 +690,17 @@ async function fetchChallenges() {
             data.data.forEach(p => {
                 const diffColor = p.difficulty === 'Easy' ? 'text-gfg' : p.difficulty === 'Medium' ? 'text-yellow-600' : 'text-red-600';
                 const html = `
-                <div class="glass-card p-6 rounded-2xl bg-white shadow-sm border border-gray-100 flex items-center justify-between group hover:border-gfg/30 transition-all">
+                <div class="glass-card p-6 rounded-2xl flex items-center justify-between group hover:border-gfg/30 transition-all">
                     <div>
-                        <h3 class="font-bold text-[#1a1a2e] text-xl mb-1">${p.title}</h3>
+                        <h3 class="font-bold text-white text-xl mb-1">${p.title}</h3>
                         <div class="flex gap-4 items-center">
                             <span class="${diffColor} text-sm font-bold">${p.difficulty}</span>
                             <div class="flex gap-2">
-                                ${p.tags.map(t => `<span class="bg-gray-100 text-gray-500 text-[10px] uppercase font-bold px-2 py-0.5 rounded">${t}</span>`).join('')}
+                                ${p.tags.map(t => `<span class="bg-white/5 text-gray-400 text-[10px] uppercase font-bold px-2 py-0.5 rounded border border-white/5">${t}</span>`).join('')}
                             </div>
                         </div>
                     </div>
-                    <a href="coding.html?id=${p._id}" class="bg-gray-50 group-hover:bg-gfg group-hover:text-white text-gray-700 px-6 py-2.5 rounded-xl font-bold transition-all border border-gray-200 group-hover:border-gfg">Solve</a>
+                    <a href="coding.html?id=${p._id}" class="bg-white/5 group-hover:bg-gfg group-hover:text-white text-gray-300 px-6 py-2.5 rounded-xl font-bold transition-all border border-white/10 group-hover:border-gfg">Solve</a>
                 </div>`;
                 list.insertAdjacentHTML('beforeend', html);
             });
@@ -921,3 +951,45 @@ window.showSignup = function() {
         }
     });
 };
+
+// ---------------------------------------------
+// FLOATING ACTION BUTTONS (ADMIN & AI MENTOR)
+// ---------------------------------------------
+function setupFloatingButtons() {
+    // Create container for floating buttons
+    const container = document.createElement('div');
+    container.id = 'floating-buttons-container';
+    container.className = 'fixed inset-x-0 bottom-0 pointer-events-none z-[999] flex justify-between p-6 pb-8 md:p-8 md:pb-10 items-end';
+    
+    // Admin Portal Button (Left)
+    const adminBtnHtml = `
+        <a href="/admin" class="pointer-events-auto flex items-center gap-3 px-3 py-3 rounded-2xl glass-card text-white hover:bg-white/10 transition-all group border border-white/5">
+            <div class="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 group-hover:bg-gfg group-hover:text-white transition-all shadow-lg">
+                <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <div class="w-0 overflow-hidden group-hover:w-28 transition-all duration-500 ease-in-out opacity-0 group-hover:opacity-100 flex flex-col">
+                <span class="text-[10px] uppercase font-black text-gray-500 tracking-widest leading-none mb-1 whitespace-nowrap">Internal</span>
+                <span class="font-bold text-sm tracking-tight whitespace-nowrap">Admin Portal</span>
+            </div>
+        </a>
+    `;
+
+    // Mentor Button (Right)
+    const mentorBtnHtml = `
+        <a href="mentor.html" class="pointer-events-auto flex items-center gap-3 px-3 py-3 rounded-2xl glass-card text-white hover:scale-105 transition-all group relative border border-gfg/30 shadow-[0_0_40px_rgba(47,141,70,0.25)]">
+            <div class="absolute -top-1 -right-1 w-3 h-3 bg-gfg rounded-full border-2 border-[#0f172a] z-10">
+                <span class="absolute inset-0 rounded-full bg-gfg animate-ping"></span>
+            </div>
+            <div class="w-0 overflow-hidden group-hover:w-32 transition-all duration-500 ease-in-out opacity-0 group-hover:opacity-100 flex flex-col items-end">
+                <span class="text-[10px] uppercase font-black text-gfg-light tracking-widest leading-none mb-1 whitespace-nowrap">Ask Anything</span>
+                <span class="font-bold text-lg tracking-tight whitespace-nowrap">Mentor 24/7</span>
+            </div>
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-gfg to-gfg-light flex items-center justify-center text-white text-2xl shadow-xl shadow-gfg/20">
+                <i class="fa-solid fa-headset"></i>
+            </div>
+        </a>
+    `;
+
+    container.innerHTML = adminBtnHtml + mentorBtnHtml;
+    document.body.appendChild(container);
+}

@@ -23,7 +23,7 @@
             <span class="font-bold text-lg text-white">Admin <span class="text-gfg">Dashboard</span></span>
         </div>
         <div class="flex items-center gap-4">
-            <a href="http://127.0.0.1:3000/index.html" target="_blank" class="text-gray-400 hover:text-white text-sm transition-colors">
+            <a href="/index.html" target="_blank" class="text-gray-400 hover:text-white text-sm transition-colors">
                 <i class="fa-solid fa-external-link mr-1"></i> View Site
             </a>
             <button onclick="logout()" class="text-red-400 hover:text-red-300 text-sm font-bold transition-colors">
@@ -116,7 +116,11 @@
             <div id="add-resource-form" class="hidden bg-[#111827] border border-white/5 rounded-xl p-6 mb-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <input type="text" id="res-title" placeholder="Resource Title" class="admin-input">
-                    <select id="res-category" class="admin-input"><option value="Beginner">Beginner</option><option value="DSA">DSA</option><option value="Interview">Interview</option></select>
+                    <select id="res-category" class="admin-input">
+                        <option value="Beginner Programming">Beginner Programming</option>
+                        <option value="DSA Preparation">DSA Preparation</option>
+                        <option value="Interview Prep">Interview Prep</option>
+                    </select>
                     <input type="url" id="res-link" placeholder="https://..." class="admin-input">
                     <select id="res-level" class="admin-input"><option value="Beginner">Beginner</option><option value="Intermediate">Intermediate</option><option value="Advanced">Advanced</option></select>
                     <input type="text" id="res-desc" placeholder="Short description" class="admin-input md:col-span-2">

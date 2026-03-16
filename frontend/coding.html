@@ -32,7 +32,7 @@
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     </style>
 </head>
-<body class="h-full flex flex-col bg-[#fdfdfd] overflow-hidden">
+<body class="h-full flex flex-col bg-dark overflow-hidden text-gray-300">
 
     <!-- Top Bar -->
     <nav class="h-16 glass-nav px-6 flex items-center justify-between z-50">
@@ -43,6 +43,10 @@
             <div class="h-6 w-[1px] bg-white/10"></div>
             <a href="challenges.html" class="text-gray-300 hover:text-gfg transition-colors flex items-center gap-2 font-medium">
                 <i class="fa-solid fa-chevron-left"></i> Problems
+            </a>
+            <div class="h-6 w-[1px] bg-white/10"></div>
+            <a href="/admin" class="text-gray-300 hover:text-gfg transition-colors flex items-center gap-2 font-medium">
+                Admin
             </a>
             <div class="h-6 w-[1px] bg-white/10"></div>
             <h2 id="problem-title" class="font-bold text-white text-lg"><i class="fa-solid fa-spinner fa-spin text-gfg-light"></i> Loading...</h2>
@@ -62,38 +66,38 @@
     <!-- Main Workspace -->
     <main class="flex-grow flex overflow-hidden">
         <!-- Problem Description Pane -->
-        <div id="problem-pane" class="w-[40%] problem-detail custom-scrollbar p-8 border-r border-gray-100">
+        <div id="problem-pane" class="w-[40%] problem-detail custom-scrollbar p-8 border-r border-white/10">
             <div id="problem-content" class="space-y-8">
                 <div>
                     <div class="flex items-center gap-3 mb-4">
                         <span id="problem-difficulty" class="px-3 py-1 bg-gfg/10 text-gfg rounded-full text-xs font-bold ring-1 ring-gfg/20">Difficulty</span>
                         <div id="problem-tags" class="flex gap-2"></div>
                     </div>
-                    <div id="problem-description" class="prose prose-slate max-w-none text-gray-700 leading-relaxed">
+                    <div id="problem-description" class="prose prose-invert max-w-none text-gray-300 leading-relaxed">
                         <!-- Markdown-like content here -->
                     </div>
                 </div>
 
                 <div class="space-y-4">
-                    <h3 class="font-bold text-[#1a1a2e] flex items-center gap-2"><i class="fa-solid fa-input-pipe text-gfg"></i> Input Format</h3>
-                    <div id="input-format" class="bg-gray-50 p-4 rounded-xl text-sm text-gray-600 border border-gray-100"></div>
+                    <h3 class="font-bold text-white flex items-center gap-2"><i class="fa-solid fa-input-pipe text-gfg"></i> Input Format</h3>
+                    <div id="input-format" class="bg-dark/50 p-4 rounded-xl text-sm text-gray-300 border border-white/10"></div>
                 </div>
 
                 <div class="space-y-4">
-                    <h3 class="font-bold text-[#1a1a2e] flex items-center gap-2"><i class="fa-solid fa-output text-gfg"></i> Output Format</h3>
-                    <div id="output-format" class="bg-gray-50 p-4 rounded-xl text-sm text-gray-600 border border-gray-100"></div>
+                    <h3 class="font-bold text-white flex items-center gap-2"><i class="fa-solid fa-output text-gfg"></i> Output Format</h3>
+                    <div id="output-format" class="bg-dark/50 p-4 rounded-xl text-sm text-gray-300 border border-white/10"></div>
                 </div>
 
                 <div class="space-y-4">
-                    <h3 class="font-bold text-[#1a1a2e] flex items-center gap-2"><i class="fa-solid fa-vial text-gfg"></i> Sample Test Case</h3>
+                    <h3 class="font-bold text-white flex items-center gap-2"><i class="fa-solid fa-vial text-gfg"></i> Sample Test Case</h3>
                     <div class="space-y-3">
-                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Input</label>
-                            <pre id="sample-input" class="font-mono text-sm text-gray-700"></pre>
+                        <div class="bg-dark/50 p-4 rounded-xl border border-white/10">
+                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest block mb-2">Input</label>
+                            <pre id="sample-input" class="font-mono text-sm text-gray-300"></pre>
                         </div>
-                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Output</label>
-                            <pre id="sample-output" class="font-mono text-sm text-gray-700"></pre>
+                        <div class="bg-dark/50 p-4 rounded-xl border border-white/10">
+                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest block mb-2">Output</label>
+                            <pre id="sample-output" class="font-mono text-sm text-gray-300"></pre>
                         </div>
                     </div>
                 </div>
@@ -104,15 +108,15 @@
         <div class="resizer"></div>
 
         <!-- Editor Pane -->
-        <div id="editor-pane" class="flex-grow flex flex-col bg-white">
-            <div id="editor" class="flex-grow border-b border-gray-200"></div>
+        <div id="editor-pane" class="flex-grow flex flex-col bg-dark/50">
+            <div id="editor" class="flex-grow border-b border-white/10"></div>
             <!-- Results Pane -->
-            <div id="results-pane" class="h-48 bg-gray-50 border-t border-gray-200 flex flex-col">
-                <div class="px-6 py-2 border-b border-gray-200 flex items-center justify-between">
+            <div id="results-pane" class="h-48 bg-dark border-t border-white/10 flex flex-col">
+                <div class="px-6 py-2 border-b border-white/10 flex items-center justify-between">
                     <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Console</span>
                     <button id="clear-console-btn" class="text-xs text-gray-400 hover:text-gfg transition-colors">Clear</button>
                 </div>
-                <div id="console-output" class="flex-grow p-4 font-mono text-sm text-gray-600 overflow-y-auto custom-scrollbar">
+                <div id="console-output" class="flex-grow p-4 font-mono text-sm text-gray-300 overflow-y-auto custom-scrollbar">
                     <p class="text-gray-400 italic">Run your code to see results here...</p>
                 </div>
             </div>

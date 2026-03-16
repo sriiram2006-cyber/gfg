@@ -6,6 +6,7 @@
     <title>GeeksforGeeks RIT Campus Club</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="frontend/script.js"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
@@ -89,13 +90,13 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Home</a>
-                    <a href="#about" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">About</a>
-                    <a href="#events" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Events</a>
-                    <a href="#resources" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Resources</a>
-                    <a href="#leaderboard" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Leaderboard</a>
-                    <a href="#ai-roadmap" class="text-gfg-light drop-shadow-[0_0_8px_rgba(74,222,128,0.5)] font-semibold transition-all hover:scale-105 text-sm flex items-center gap-2"><i class="fa-solid fa-robot"></i> AI Roadmap</a>
-                    <a href="#contact" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Contact</a>
+                    <a href="index.html" class="text-gfg-light drop-shadow-[0_0_8px_rgba(74,222,128,0.5)] font-semibold transition-all hover:scale-105 text-sm">Home</a>
+                    <a href="about.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">About</a>
+                    <a href="events.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Events</a>
+                    <a href="resources.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Resources</a>
+                    <a href="leaderboard.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Leaderboard</a>
+                    <a href="roadmap.html" class="text-gfg-light drop-shadow-[0_0_8px_rgba(74,222,128,0.5)] font-semibold transition-all hover:scale-105 text-sm flex items-center gap-2"><i class="fa-solid fa-robot"></i> AI Roadmap</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-white hover:text-gfg-light transition-colors font-medium text-sm">Contact</a>
                     
                     <button class="bg-gfg hover:bg-gfg-dark text-white px-6 py-2.5 rounded-full font-semibold transition-all shadow-lg shadow-gfg/30 hover:shadow-gfg/50 text-sm">
                         Join Community
@@ -114,13 +115,13 @@
         <!-- Mobile Menu Panel -->
         <div id="mobile-menu" class="md:hidden hidden bg-[#0f172a] border-b border-white/5">
             <div class="px-2 pt-2 pb-5 space-y-1 sm:px-3 flex flex-col items-center">
-                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/5 hover:text-gfg-light">Home</a>
-                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">About</a>
-                <a href="#events" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Events</a>
-                <a href="#resources" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Resources</a>
-                <a href="#leaderboard" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Leaderboard</a>
-                <a href="#ai-roadmap" class="block px-3 py-2 rounded-md text-base font-bold text-gfg-light hover:bg-white/5"><i class="fa-solid fa-robot mr-2"></i>AI Roadmap</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Contact</a>
+                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/5 hover:text-gfg-light">Home</a>
+                <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">About</a>
+                <a href="events.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Events</a>
+                <a href="resources.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Resources</a>
+                <a href="leaderboard.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Leaderboard</a>
+                <a href="roadmap.html" class="block px-3 py-2 rounded-md text-base font-bold text-gfg-light hover:bg-white/5"><i class="fa-solid fa-robot mr-2"></i>AI Roadmap</a>
+                <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Contact</a>
                 <button class="mt-4 w-11/12 bg-gfg hover:bg-gfg-dark text-white px-6 py-3 rounded-xl font-bold transition-colors shadow-lg shadow-gfg/20">
                     Join Community
                 </button>
@@ -248,7 +249,7 @@
                     <div class="glass-card p-5 rounded-xl border-l-4 border-l-gfg-light bg-gradient-to-r from-gfg/10 to-transparent">
                         <h3 class="text-sm uppercase tracking-wider text-gfg-light font-bold mb-2 flex items-center gap-2"><i class="fa-solid fa-bolt"></i> Problem of the Day</h3>
                         <p class="font-semibold text-white mb-3 text-lg">Reverse a Linked List in Groups of Given Size</p>
-                        <button class="text-sm bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg transition-colors font-medium w-full text-center">Solve Challenge</button>
+                        <a href="challenges.html" class="text-sm bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg transition-colors font-medium w-full text-center block">Solve Challenge</a>
                     </div>
                 </div>
 
@@ -755,28 +756,7 @@
             </div>
         </section>
 
-        <!-- Script to handle pseudo-AI interaction -->
-        <script>
-            function generateRoadmap() {
-                const emptyState = document.getElementById('empty-state');
-                const loadState = document.getElementById('loading-state');
-                const resState = document.getElementById('result-state');
-
-                emptyState.classList.add('hidden');
-                resState.classList.add('hidden');
-                loadState.classList.remove('hidden');
-                loadState.classList.add('flex');
-
-                // Simulate AI processing delay
-                setTimeout(() => {
-                    loadState.classList.remove('flex');
-                    loadState.classList.add('hidden');
-                    
-                    resState.classList.remove('hidden');
-                    resState.classList.add('block');
-                }, 2000);
-            }
-        </script>
+        <!-- script.js will handle all logic -->
 
         <!-- 7. CONTACT SECTION & FOOTER -->
         <section id="contact" class="pt-24 pb-0 bg-black/40 border-t border-white/5 relative">
