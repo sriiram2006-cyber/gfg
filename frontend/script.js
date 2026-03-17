@@ -1,5 +1,7 @@
 // Base API URL
-const API_URL = 'http://localhost:5000/api';
+// In development, use http://localhost:5000/api
+// In production, when served by the same backend, use /api
+const API_URL = window.location.origin === 'http://127.0.0.1:5500' || window.location.hostname === 'localhost' ? 'http://localhost:5000/api' : '/api';
 
 // Mobile menu toggling logic
 document.addEventListener('DOMContentLoaded', () => {
@@ -54,9 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Setup Join Community buttons on ALL pages
     setupJoinCommunity();
 
+    // Setup Global Auth Modal
+    injectAuthModal();
+
     // Setup Floating Action Buttons (Admin & AI Mentor)
     setupFloatingButtons();
-
 });
 
 // ---------------------------------------------
@@ -603,6 +607,43 @@ function setupContactForm() {
 let editor = null;
 let currentProblemId = null;
 
+// Authentication Modal Injection
+function injectAuthModal() {
+    if (document.getElementById('auth-modal')) return;
+
+    const modalHtml = `
+    <!-- Login Modal -->
+    <div id="auth-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div class="glass-card w-full max-w-md overflow-hidden rounded-3xl animate-[fadeInUp_0.3s_ease] border-none shadow-2xl">
+            <div class="bg-gfg p-8 text-center relative">
+                <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-white/50 hover:text-white transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
+                <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-white/30 backdrop-blur-md">
+                    <i class="fa-solid fa-user text-white text-3xl"></i>
+                </div>
+                <h3 id="auth-modal-title" class="text-2xl font-bold text-white">Welcome Back</h3>
+                <p id="auth-modal-desc" class="text-white/80 text-sm">Login to start solving challenges</p>
+            </div>
+            <div id="auth-form-container" class="p-8 space-y-4">
+                <form id="login-form" class="space-y-4">
+                    <div>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Email</label>
+                        <input type="email" id="auth-email" required class="w-full bg-dark/50 border border-white/10 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-gfg focus:ring-1 focus:ring-gfg transition-all mt-1" placeholder="name@ritchennai.edu.in">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Password</label>
+                        <input type="password" id="auth-password" required class="w-full bg-dark/50 border border-white/10 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-gfg focus:ring-1 focus:ring-gfg transition-all mt-1" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="w-full bg-gfg hover:bg-gfg-dark text-white font-bold py-4 rounded-xl shadow-lg shadow-gfg/30 transition-all mt-4">Login</button>
+                    <p class="text-center text-gray-500 text-sm mt-4">Don't have an account? <a href="#" onclick="showSignup()" class="text-gfg font-bold">Join Community</a></p>
+                </form>
+            </div>
+        </div>
+    </div>`;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+    initMemberAuth();
+}
+
 // Authentication
 async function initMemberAuth() {
     const token = localStorage.getItem('memberToken');
@@ -963,29 +1004,29 @@ function setupFloatingButtons() {
     
     // Admin Portal Button (Left)
     const adminBtnHtml = `
-        <a href="/admin" class="pointer-events-auto flex items-center gap-3 px-3 py-3 rounded-2xl glass-card text-white hover:bg-white/10 transition-all group border border-white/5">
-            <div class="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 group-hover:bg-gfg group-hover:text-white transition-all shadow-lg">
-                <i class="fa-solid fa-user-shield"></i>
+        <a href="/admin" class="pointer-events-auto flex items-center gap-0 hover:gap-3 p-0 rounded-full glass-card text-white transition-all duration-300 group w-14 hover:w-48 h-14 overflow-hidden shadow-lg border-none">
+            <div class="flex-shrink-0 w-14 h-14 rounded-full bg-[#1e293b] flex items-center justify-center text-gray-400 group-hover:bg-gfg group-hover:text-white transition-all">
+                <i class="fa-solid fa-user-shield text-xl"></i>
             </div>
-            <div class="w-0 overflow-hidden group-hover:w-28 transition-all duration-500 ease-in-out opacity-0 group-hover:opacity-100 flex flex-col">
-                <span class="text-[10px] uppercase font-black text-gray-500 tracking-widest leading-none mb-1 whitespace-nowrap">Internal</span>
-                <span class="font-bold text-sm tracking-tight whitespace-nowrap">Admin Portal</span>
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pr-8 pl-4">
+                <span class="text-[10px] uppercase font-black text-gray-400 tracking-widest leading-none block mb-1">Internal</span>
+                <span class="font-bold text-sm tracking-tight">Admin Portal</span>
             </div>
         </a>
     `;
 
     // Mentor Button (Right)
     const mentorBtnHtml = `
-        <a href="mentor.html" class="pointer-events-auto flex items-center gap-3 px-3 py-3 rounded-2xl glass-card text-white hover:scale-105 transition-all group relative border border-gfg/30 shadow-[0_0_40px_rgba(47,141,70,0.25)]">
-            <div class="absolute -top-1 -right-1 w-3 h-3 bg-gfg rounded-full border-2 border-[#0f172a] z-10">
-                <span class="absolute inset-0 rounded-full bg-gfg animate-ping"></span>
+        <a href="mentor.html" class="pointer-events-auto flex flex-row-reverse items-center gap-0 hover:gap-4 p-0 rounded-full glass-card text-white hover:scale-105 transition-all duration-300 group relative w-14 hover:w-52 h-14 overflow-hidden shadow-[0_0_30px_rgba(47,141,70,0.2)] border-none">
+            <div class="absolute top-1 right-1 w-3.5 h-3.5 bg-gfg rounded-full z-20 transition-transform group-hover:scale-0 shadow-sm border border-white/20">
+                <span class="absolute inset-0 rounded-full bg-gfg animate-ping opacity-75"></span>
             </div>
-            <div class="w-0 overflow-hidden group-hover:w-32 transition-all duration-500 ease-in-out opacity-0 group-hover:opacity-100 flex flex-col items-end">
-                <span class="text-[10px] uppercase font-black text-gfg-light tracking-widest leading-none mb-1 whitespace-nowrap">Ask Anything</span>
-                <span class="font-bold text-lg tracking-tight whitespace-nowrap">Mentor 24/7</span>
-            </div>
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-gfg to-gfg-light flex items-center justify-center text-white text-2xl shadow-xl shadow-gfg/20">
+            <div class="flex-shrink-0 w-14 h-14 rounded-full bg-gradient-to-tr from-gfg to-gfg-light flex items-center justify-center text-white text-xl shadow-lg relative z-10">
                 <i class="fa-solid fa-headset"></i>
+            </div>
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-end whitespace-nowrap pl-8 pr-4">
+                <span class="text-[10px] uppercase font-black text-gfg-light tracking-widest leading-none mb-1">Ask Anything</span>
+                <span class="font-bold text-base tracking-tight">Mentor 24/7</span>
             </div>
         </a>
     `;
